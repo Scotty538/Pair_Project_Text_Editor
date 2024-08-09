@@ -1,10 +1,13 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
 
 // Component to define menu bar
 
 public class MenuBar {
     // Method to create manu bar
-    public JMenuBar createMenuBar() {
+    public static JMenuBar createMenuBar() {
         // Creating menu bar
         JMenuBar menuBar = new JMenuBar();
 
@@ -14,8 +17,14 @@ public class MenuBar {
         // Creating file menu dropdown items
         JMenuItem fileNew = new JMenuItem("New");
         JMenuItem fileOpen = new JMenuItem("Open");
-        JMenuItem fileSave = new JMenuItem("Save");
+        JMenuItem fileSave = new JMenuItem("Save As");
         JMenuItem filePrint = new JMenuItem("Print");
+
+        // Adding action listener
+        fileNew.addActionListener(new MenuBarActionListener());
+        fileOpen.addActionListener(new MenuBarActionListener());
+        fileSave.addActionListener(new MenuBarActionListener());
+        filePrint.addActionListener(new MenuBarActionListener());
 
         // Adding dropdown items to file
         fileButton.add(fileNew);
@@ -32,6 +41,12 @@ public class MenuBar {
         JMenuItem editCopy = new JMenuItem("Copy");
         JMenuItem editPaste = new JMenuItem("Paste");
 
+        // Adding action listener
+        editSelectAll.addActionListener(new MenuBarActionListener());
+        editCut.addActionListener(new MenuBarActionListener());
+        editCopy.addActionListener(new MenuBarActionListener());
+        editPaste.addActionListener(new MenuBarActionListener());
+
         // Adding dropdown items to edit
         editButton.add(editSelectAll);
         editButton.add(editCut);
@@ -44,4 +59,6 @@ public class MenuBar {
 
         return menuBar;
     }
+
+
 }

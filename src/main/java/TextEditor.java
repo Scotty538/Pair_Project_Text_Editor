@@ -2,8 +2,8 @@ import javax.swing.*;
 
 public class TextEditor extends JFrame {
     // Initialising frame and page
-    JFrame frame;
-    JTextArea page;
+    public static JFrame frame;
+    public static JTextArea page;
 
 
     // Constructor
@@ -15,11 +15,12 @@ public class TextEditor extends JFrame {
         page = new JTextArea();
 
         // Create and display menu bar component
-        MenuBar menuBar = new MenuBar();
-        frame.setJMenuBar(menuBar.createMenuBar());
+        frame.setJMenuBar(MenuBar.createMenuBar());
+
 
         frame.add(page);
-        frame.setSize(600, 700);
+        frame.setSize(600, 600);
+        frame.setLocation(100, 50);
         frame.show();
     }
 }
