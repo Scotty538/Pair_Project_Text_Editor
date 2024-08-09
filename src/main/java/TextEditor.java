@@ -5,7 +5,6 @@ public class TextEditor extends JFrame {
     public static JFrame frame;
     public static JTextArea page;
 
-
     // Constructor
     TextEditor()
     {
@@ -13,12 +12,18 @@ public class TextEditor extends JFrame {
 
         // Adding text area
         page = new JTextArea();
+        page.setLineWrap(true); // displays text on new line once reaching end of window
+        page.setWrapStyleWord(true); // ensures the full word enters new line (instead of single char)
+
+        // Adding scrollable panel with the editor page
+        JScrollPane scrollPage = new JScrollPane(page);
+        scrollPage.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED); // Makes scrollbar only appear when needed
+        scrollPage.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         // Create and display menu bar component
         frame.setJMenuBar(MenuBar.createMenuBar());
 
-
-        frame.add(page);
+        frame.add(scrollPage);
         frame.setSize(600, 600);
         frame.setLocation(100, 50);
         frame.show();
