@@ -1,4 +1,6 @@
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -9,7 +11,11 @@ public class MenuBarActionListener implements ActionListener {
         String s = e.getActionCommand();
 
         if (s.equals("New")) {
-            TextEditor.page.setText("");
+            int userConfirmation = JOptionPane.showConfirmDialog(null,
+                    "Are you sure you want to open a new file? Any unsaved work will be lost", "WARNING", JOptionPane.YES_NO_OPTION);
+            if(userConfirmation == JOptionPane.YES_OPTION) {
+                TextEditor.page.setText("");
+            }
         } else if (s.equals("Open")) {
             // Creating a new JFileChooser object
             JFileChooser fileChooser = new JFileChooser("F:");
@@ -21,9 +27,9 @@ public class MenuBarActionListener implements ActionListener {
                 // Obtaining the path to the selected file
                 File filePath = new File(fileChooser.getSelectedFile().getAbsolutePath());
                 try {
-                    // Initialising variables to read and write text
-                    String line = "";
-                    String page = "";
+                    // Declaring variables to read and write text
+                    String line;
+                    String page;
 
                     // File reader
                     FileReader fr = new FileReader(filePath);
@@ -39,7 +45,7 @@ public class MenuBarActionListener implements ActionListener {
                         page = page + "\n" + line;
                     }
 
-                    // Setting the text to the editor
+                    // Setting the text to the JTextArea
                     TextEditor.page.setText(page);
                 } catch (Exception eOpen) {
                     JOptionPane.showMessageDialog(TextEditor.frame, eOpen.getMessage());
@@ -88,6 +94,12 @@ public class MenuBarActionListener implements ActionListener {
             TextEditor.page.copy();
         } else if (s.equals("Paste")) {
             TextEditor.page.paste();
+        } else if (s.equals("Light Mode")) {
+            TextEditor.page.setForeground(new Color(58, 58, 58));
+            TextEditor.page.setBackground(new Color(224, 224, 224));
+        } else if (s.equals("Dark Mode")) {
+            TextEditor.page.setForeground(new Color(224, 224, 224));
+            TextEditor.page.setBackground(new Color(58, 58, 58));
         }
     }
 }

@@ -1,9 +1,4 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.*;
-
-// Component to define menu bar
 
 public class MenuBar {
     // Method to create manu bar
@@ -53,9 +48,25 @@ public class MenuBar {
         editButton.add(editCopy);
         editButton.add(editPaste);
 
-        // Adding file and edit buttons to menu
+        // Creating mode menu button
+        JMenu viewButton = new JMenu("View");
+
+        // Creating edit dropdown items
+        JMenuItem viewLightMode = new JMenuItem("Light Mode");
+        JMenuItem viewDarkMode = new JMenuItem("Dark Mode");
+
+        // Adding action listener
+        viewLightMode.addActionListener(new MenuBarActionListener());
+        viewDarkMode.addActionListener(new MenuBarActionListener());
+
+        // Adding dropdown items to edit
+        viewButton.add(viewLightMode);
+        viewButton.add(viewDarkMode);
+
+        // Adding file, edit, and mode buttons to menu
         menuBar.add(fileButton);
         menuBar.add(editButton);
+        menuBar.add(viewButton);
 
         return menuBar;
     }

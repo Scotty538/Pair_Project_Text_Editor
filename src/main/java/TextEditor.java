@@ -1,31 +1,39 @@
 import javax.swing.*;
+import java.awt.*;
+
+import org.fife.ui.rtextarea.*;
+import org.fife.ui.rsyntaxtextarea.*;
 
 public class TextEditor extends JFrame {
     // Initialising frame and page
     public static JFrame frame;
-    public static JTextArea page;
-
+    public static RSyntaxTextArea page;
     // Constructor
     TextEditor()
     {
         frame = new JFrame("Alex and Scott's Editor");
 
         // Adding text area
-        page = new JTextArea();
-        page.setLineWrap(true); // displays text on new line once reaching end of window
-        page.setWrapStyleWord(true); // ensures the full word enters new line (instead of single char)
+        page = new RSyntaxTextArea();
+        page.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA); // Set syntax colouring to java conventions
+        page.setCodeFoldingEnabled(true); // Allows folding/collapsing of code sections
 
-        // Adding scrollable panel with the editor page
-        JScrollPane scrollPage = new JScrollPane(page);
-        scrollPage.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED); // Makes scrollbar only appear when needed
-        scrollPage.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        Font font = new Font("Monospaced",Font.PLAIN,14);
+        TextEditor.page.setFont(font);
 
-        // Create and display menu bar component
+        // Adding scrollable pane with the editor page
+        RTextScrollPane scrollPage = new RTextScrollPane(page);
+
+        TextEditor.page.setForeground(new Color(224, 224, 224));
+        TextEditor.page.setBackground(new Color(58, 58, 58));
+
+        // Creating and displaying menu bar component
         frame.setJMenuBar(MenuBar.createMenuBar());
 
         frame.add(scrollPage);
         frame.setSize(600, 600);
-        frame.setLocation(100, 50);
-        frame.show();
+        frame.setLocation(50, 50);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setVisible(true);
     }
 }
