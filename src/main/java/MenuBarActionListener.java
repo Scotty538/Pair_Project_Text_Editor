@@ -1,3 +1,5 @@
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.Theme;
 import org.fife.ui.rtextarea.Gutter;
 
 import javax.swing.*;
@@ -7,7 +9,7 @@ import java.io.*;
 
 public class MenuBarActionListener {
     // Adding events for when a menu button is clicked
-    public static void action(JTextArea textArea, ActionEvent e, Gutter gutter) {
+    public static void action(RSyntaxTextArea textArea, ActionEvent e, Gutter gutter) {
         String s = e.getActionCommand();
 
         if (s.equals("New")) {
@@ -91,20 +93,43 @@ public class MenuBarActionListener {
         } else if (s.equals("Paste")) {
             textArea.paste();
         } else if (s.equals("Light Mode")) {
+            // Changing syntax highlighting color scheme to match change in mode
+            try {
+                Theme theme = Theme.load(MenuBarActionListener.class.getResourceAsStream(
+                        "/org/fife/ui/rsyntaxtextarea/themes/default.xml"));
+                theme.apply(textArea);
+            } catch (IOException eRSyntax) {
+                System.out.println("There is a problem with the first RSyntaxTextArea syntax highlighting theme in MenuBarActionListener");
+            }
+            SwingUtilities.updateComponentTreeUI(textArea);
+
+            Font font = new Font("Consolas",Font.PLAIN,14);
+            textArea.setFont(font);
+
             textArea.setForeground(new Color(58, 58, 58));
-            textArea.setBackground(new Color(214, 214, 214));
+            textArea.setBackground(new Color(204, 204, 204));
             ChildWindow.newPage.setCurrentLineHighlightColor(new Color(189, 189, 189)); // Change colour of highlighted line
             ChildWindow.darkMode = false;
-            gutter.setBackground(new Color(224, 224, 224));
+            gutter.setBackground(new Color(204, 204, 204));
 
         } else if (s.equals("Dark Mode")) {
+            // Changing syntax highlighting color scheme to match change in mode
+            try {
+                Theme theme = Theme.load(MenuBarActionListener.class.getResourceAsStream(
+                        "/org/fife/ui/rsyntaxtextarea/themes/monokai.xml"));
+                theme.apply(textArea);
+            } catch (IOException eRSyntax) {
+                System.out.println("There is a problem with the second RSyntaxTextArea syntax highlighting theme in MenuBarActionListener");
+            }
+            SwingUtilities.updateComponentTreeUI(textArea);
+            Font font = new Font("Consolas",Font.PLAIN,14);
+            textArea.setFont(font);
+
             textArea.setForeground(new Color(204, 204, 204));
             textArea.setBackground(new Color(58, 58, 58));
             gutter.setBackground(new Color(58, 58, 58));
             ChildWindow.newPage.setCurrentLineHighlightColor(new Color(84, 84, 84)); // Change colour of highlighted line
             ChildWindow.darkMode = true;
-
-
         }
     }
 }

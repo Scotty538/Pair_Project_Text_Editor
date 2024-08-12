@@ -1,10 +1,10 @@
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rtextarea.Gutter;
 
 import javax.swing.*;
 
 public class MenuBar {
-    // Method to create manu bar
-    public static JMenuBar createMenuBar(JTextArea page, Gutter gutter) {
+    public static JMenuBar createMenuBar(RSyntaxTextArea page, Gutter gutter) {
         // Creating menu bar
         JMenuBar menuBar = new JMenuBar();
 
