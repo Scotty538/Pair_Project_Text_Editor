@@ -44,7 +44,6 @@ public class ChildWindow extends JFrame {
             } catch (IOException eRSyntax) {
                 System.out.println("There is a problem with the second RSyntaxTextArea syntax highlighting theme in ChildWindow");
             }
-            SwingUtilities.updateComponentTreeUI(newPage);
             newPage.setFont(font);
 
             newPage.setForeground(new Color(204, 204, 204));
@@ -59,7 +58,6 @@ public class ChildWindow extends JFrame {
             } catch (IOException eRSyntax) {
                 System.out.println("There is a problem with the third RSyntaxTextArea syntax highlighting theme");
             }
-            SwingUtilities.updateComponentTreeUI(newPage);
             newPage.setFont(font);
 
             newPage.setForeground(new Color(58, 58, 58));

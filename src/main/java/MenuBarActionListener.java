@@ -101,7 +101,6 @@ public class MenuBarActionListener {
             } catch (IOException eRSyntax) {
                 System.out.println("There is a problem with the first RSyntaxTextArea syntax highlighting theme in MenuBarActionListener");
             }
-            SwingUtilities.updateComponentTreeUI(textArea);
 
             Font font = new Font("Consolas",Font.PLAIN,14);
             textArea.setFont(font);
@@ -121,7 +120,7 @@ public class MenuBarActionListener {
             } catch (IOException eRSyntax) {
                 System.out.println("There is a problem with the second RSyntaxTextArea syntax highlighting theme in MenuBarActionListener");
             }
-            SwingUtilities.updateComponentTreeUI(textArea);
+
             Font font = new Font("Consolas",Font.PLAIN,14);
             textArea.setFont(font);
 
