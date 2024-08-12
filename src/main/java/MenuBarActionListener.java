@@ -10,7 +10,7 @@ public class MenuBarActionListener {
         String s = e.getActionCommand();
 
         if (s.equals("New")) {
-            if (TextEditor.darkMode == true) {
+            if (TextEditor.darkMode) {
                 ChildWindow newOne = new ChildWindow(true);
             } else {
                 ChildWindow newOne = new ChildWindow(false);
