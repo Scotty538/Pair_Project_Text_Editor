@@ -8,6 +8,6 @@ public class AlexScott {
             System.err.println("Failed to initialize LaF");
         }
 
-        TextEditor te = new TextEditor();
+        ChildWindow window = new ChildWindow();
     }
 }
