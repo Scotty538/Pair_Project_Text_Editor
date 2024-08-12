@@ -2,19 +2,18 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 
-public class MenuBarActionListener implements ActionListener {
+public class MenuBarActionListener {
     // Adding events for when a menu button is clicked
-    public void actionPerformed(ActionEvent e) {
+    public static void action(JTextArea textArea, ActionEvent e) {
         String s = e.getActionCommand();
 
         if (s.equals("New")) {
-            int userConfirmation = JOptionPane.showConfirmDialog(null,
-                    "Are you sure you want to open a new file? Any unsaved work will be lost", "WARNING", JOptionPane.YES_NO_OPTION);
-            if(userConfirmation == JOptionPane.YES_OPTION) {
-                TextEditor.page.setText("");
+            if (TextEditor.darkMode == true) {
+                ChildWindow newOne = new ChildWindow(true);
+            } else {
+                ChildWindow newOne = new ChildWindow(false);
             }
         } else if (s.equals("Open")) {
             // Creating a new JFileChooser object
@@ -46,7 +45,7 @@ public class MenuBarActionListener implements ActionListener {
                     }
 
                     // Setting the text to the JTextArea
-                    TextEditor.page.setText(page);
+                    textArea.setText(page);
                 } catch (Exception eOpen) {
                     JOptionPane.showMessageDialog(TextEditor.frame, eOpen.getMessage());
                 }
@@ -71,7 +70,7 @@ public class MenuBarActionListener implements ActionListener {
                     BufferedWriter bw = new BufferedWriter(writer);
 
                     // Write file to new location
-                    bw.write(TextEditor.page.getText());
+                    bw.write(textArea.getText());
 
                     bw.flush();
                     bw.close();
@@ -82,24 +81,30 @@ public class MenuBarActionListener implements ActionListener {
         } else if (s.equals("Print")) {
             try {
                 // In case there is a problem with printing
-                TextEditor.page.print();
+                textArea.print();
             } catch (Exception ePrint) {
                 JOptionPane.showMessageDialog(TextEditor.frame, ePrint.getMessage());
             }
         } else if (s.equals("Select All")) {
-            TextEditor.page.selectAll();
+            textArea.selectAll();
         } else if (s.equals("Cut")) {
-            TextEditor.page.cut();
+            textArea.cut();
         } else if (s.equals("Copy")) {
-            TextEditor.page.copy();
+            textArea.copy();
         } else if (s.equals("Paste")) {
-            TextEditor.page.paste();
+            textArea.paste();
         } else if (s.equals("Light Mode")) {
-            TextEditor.page.setForeground(new Color(58, 58, 58));
-            TextEditor.page.setBackground(new Color(224, 224, 224));
+            textArea.setForeground(new Color(58, 58, 58));
+            textArea.setBackground(new Color(224, 224, 224));
+            if (textArea == TextEditor.page) {
+                TextEditor.darkMode = false;
+            }
         } else if (s.equals("Dark Mode")) {
-            TextEditor.page.setForeground(new Color(224, 224, 224));
-            TextEditor.page.setBackground(new Color(58, 58, 58));
+            textArea.setForeground(new Color(224, 224, 224));
+            textArea.setBackground(new Color(58, 58, 58));
+            if (textArea == TextEditor.page) {
+                TextEditor.darkMode = true;
+            }
         }
     }
 }

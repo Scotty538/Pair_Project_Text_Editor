@@ -2,7 +2,7 @@ import javax.swing.*;
 
 public class MenuBar {
     // Method to create manu bar
-    public static JMenuBar createMenuBar() {
+    public static JMenuBar createMenuBar(JTextArea page) {
         // Creating menu bar
         JMenuBar menuBar = new JMenuBar();
 
@@ -16,10 +16,10 @@ public class MenuBar {
         JMenuItem filePrint = new JMenuItem("Print");
 
         // Adding action listener
-        fileNew.addActionListener(new MenuBarActionListener());
-        fileOpen.addActionListener(new MenuBarActionListener());
-        fileSave.addActionListener(new MenuBarActionListener());
-        filePrint.addActionListener(new MenuBarActionListener());
+        fileNew.addActionListener(e -> MenuBarActionListener.action(page, e));
+        fileOpen.addActionListener(e -> MenuBarActionListener.action(page, e));
+        fileSave.addActionListener(e -> MenuBarActionListener.action(page, e));
+        filePrint.addActionListener(e -> MenuBarActionListener.action(page, e));
 
         // Adding dropdown items to file
         fileButton.add(fileNew);
@@ -37,10 +37,10 @@ public class MenuBar {
         JMenuItem editPaste = new JMenuItem("Paste");
 
         // Adding action listener
-        editSelectAll.addActionListener(new MenuBarActionListener());
-        editCut.addActionListener(new MenuBarActionListener());
-        editCopy.addActionListener(new MenuBarActionListener());
-        editPaste.addActionListener(new MenuBarActionListener());
+        editSelectAll.addActionListener(e -> MenuBarActionListener.action(page, e));
+        editCut.addActionListener(e -> MenuBarActionListener.action(page, e));
+        editCopy.addActionListener(e -> MenuBarActionListener.action(page, e));
+        editPaste.addActionListener(e -> MenuBarActionListener.action(page, e));
 
         // Adding dropdown items to edit
         editButton.add(editSelectAll);
@@ -56,8 +56,8 @@ public class MenuBar {
         JMenuItem viewDarkMode = new JMenuItem("Dark Mode");
 
         // Adding action listener
-        viewLightMode.addActionListener(new MenuBarActionListener());
-        viewDarkMode.addActionListener(new MenuBarActionListener());
+        viewLightMode.addActionListener(e -> MenuBarActionListener.action(page, e));
+        viewDarkMode.addActionListener(e -> MenuBarActionListener.action(page, e));
 
         // Adding dropdown items to edit
         viewButton.add(viewLightMode);

@@ -5,6 +5,7 @@ public class TextEditor extends JFrame {
     // Initialising frame and page
     public static JFrame frame;
     public static JTextArea page;
+    public static boolean darkMode = true;
     // Constructor
     TextEditor()
     {
@@ -24,7 +25,7 @@ public class TextEditor extends JFrame {
         TextEditor.page.setBackground(new Color(58, 58, 58));
 
         // Creating and displaying menu bar component
-        frame.setJMenuBar(MenuBar.createMenuBar());
+        frame.setJMenuBar(MenuBar.createMenuBar(page));
 
         frame.add(scrollPage);
         frame.setSize(600, 600);
