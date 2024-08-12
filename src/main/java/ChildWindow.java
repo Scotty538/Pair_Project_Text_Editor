@@ -1,17 +1,14 @@
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class ChildWindow extends JFrame {
     // Constructor
     ChildWindow (boolean b) {
-        try {
-           UIManager.setLookAndFeel("com.formdev.flatlaf.FlatDarkLaf");
-        } catch (Exception ex) {
-           System.err.println("Failed to initialize LaF");
-        }
-
         JFrame newWindow = new JFrame("New Text Document");
-        JTextArea newPage = new JTextArea();
+        RSyntaxTextArea newPage = new RSyntaxTextArea();
+        newPage.setCurrentLineHighlightColor(Color.lightGray);
 
         Font font = new Font("Monospaced",Font.PLAIN,14);
         newPage.setFont(font);
@@ -24,9 +21,9 @@ public class ChildWindow extends JFrame {
         // Setting background/foreground colours to match the main window
         if (b) {
            newPage.setForeground(new Color(224, 224, 224));
-           newPage.setBackground(new Color(58, 58, 58));
+           newPage.setBackground(new Color(88, 88, 88));
         } else {
-           newPage.setForeground(new Color(58, 58, 58));
+           newPage.setForeground(new Color(88, 88, 88));
            newPage.setBackground(new Color(224, 224, 224));
         }
 

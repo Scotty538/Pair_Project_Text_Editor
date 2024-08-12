@@ -1,28 +1,37 @@
 import javax.swing.*;
 import java.awt.*;
 
+import org.fife.ui.rtextarea.*;
+import org.fife.ui.rsyntaxtextarea.*;
+
 public class TextEditor extends JFrame {
     // Initialising frame and page
     public static JFrame frame;
-    public static JTextArea page;
+
+    //public static JTextArea page;
     public static boolean darkMode = true;
+    //public static JTextArea page;
+    public static RSyntaxTextArea page;
+
     // Constructor
     TextEditor()
     {
         frame = new JFrame("Alex and Scott's Editor");
 
         // Adding text area
-        page = new JTextArea();
+        page = new RSyntaxTextArea();
+        page.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA); // Set syntax colouring to java conventions
+        page.setCodeFoldingEnabled(true); // Allows folding/collapsing of code sections
+        page.setCurrentLineHighlightColor(Color.gray);
+
         Font font = new Font("Monospaced",Font.PLAIN,14);
         TextEditor.page.setFont(font);
 
-        // Adding scrollable panel with the editor page
-        JScrollPane scrollPage = new JScrollPane(page);
-        page.setLineWrap(true); // displays text on new line once reaching end of window
-        page.setWrapStyleWord(true); // ensures the full word enters new line (instead of single char)
-
+        // Adding scrollable pane with the editor page
+        RTextScrollPane scrollPage = new RTextScrollPane(page);
         TextEditor.page.setForeground(new Color(224, 224, 224));
-        TextEditor.page.setBackground(new Color(58, 58, 58));
+        TextEditor.page.setBackground(new Color(88, 88, 88));
+
 
         // Creating and displaying menu bar component
         frame.setJMenuBar(MenuBar.createMenuBar(page));
