@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,11 +9,7 @@ public class MenuBarActionListener {
         String s = e.getActionCommand();
 
         if (s.equals("New")) {
-            if (TextEditor.darkMode) {
-                ChildWindow newOne = new ChildWindow(true);
-            } else {
-                ChildWindow newOne = new ChildWindow(false);
-            }
+            ChildWindow newOne = new ChildWindow();
         } else if (s.equals("Open")) {
             // Creating a new JFileChooser object
             JFileChooser fileChooser = new JFileChooser("F:");
@@ -47,7 +42,7 @@ public class MenuBarActionListener {
                     // Setting the text to the JTextArea
                     textArea.setText(page);
                 } catch (Exception eOpen) {
-                    JOptionPane.showMessageDialog(TextEditor.frame, eOpen.getMessage());
+                    JOptionPane.showMessageDialog(ChildWindow.newWindow, eOpen.getMessage());
                 }
             }
         } else if (s.equals("Save As")) {
@@ -75,7 +70,7 @@ public class MenuBarActionListener {
                     bw.flush();
                     bw.close();
                 } catch (Exception eSave) {
-                    JOptionPane.showMessageDialog(TextEditor.frame, eSave.getMessage());
+                    JOptionPane.showMessageDialog(ChildWindow.newWindow, eSave.getMessage());
                 }
             }
         } else if (s.equals("Print")) {
@@ -83,7 +78,7 @@ public class MenuBarActionListener {
                 // In case there is a problem with printing
                 textArea.print();
             } catch (Exception ePrint) {
-                JOptionPane.showMessageDialog(TextEditor.frame, ePrint.getMessage());
+                JOptionPane.showMessageDialog(ChildWindow.newWindow, ePrint.getMessage());
             }
         } else if (s.equals("Select All")) {
             textArea.selectAll();
@@ -96,17 +91,15 @@ public class MenuBarActionListener {
         } else if (s.equals("Light Mode")) {
             textArea.setForeground(new Color(58, 58, 58));
             textArea.setBackground(new Color(224, 224, 224));
-            TextEditor.page.setCurrentLineHighlightColor(new Color(199, 199, 199)); // Change colour of highlighted line
-            if (textArea == TextEditor.page) {
-                TextEditor.darkMode = false;
-            }
+            ChildWindow.newPage.setCurrentLineHighlightColor(new Color(199, 199, 199)); // Change colour of highlighted line
+            ChildWindow.darkMode = false;
+
         } else if (s.equals("Dark Mode")) {
             textArea.setForeground(new Color(224, 224, 224));
             textArea.setBackground(new Color(58, 58, 58));
-            TextEditor.page.setCurrentLineHighlightColor(new Color(84, 84, 84)); // Change colour of highlighted line
-            if (textArea == TextEditor.page) {
-                TextEditor.darkMode = true;
-            }
+            ChildWindow.newPage.setCurrentLineHighlightColor(new Color(84, 84, 84)); // Change colour of highlighted line
+            ChildWindow.darkMode = true;
+
         }
     }
 }
