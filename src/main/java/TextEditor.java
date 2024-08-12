@@ -22,16 +22,20 @@ public class TextEditor extends JFrame {
         page = new RSyntaxTextArea();
         page.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA); // Set syntax colouring to java conventions
         page.setCodeFoldingEnabled(true); // Allows folding/collapsing of code sections
-        page.setCurrentLineHighlightColor(Color.gray);
 
         Font font = new Font("Monospaced",Font.PLAIN,14);
         TextEditor.page.setFont(font);
 
         // Adding scrollable pane with the editor page
         RTextScrollPane scrollPage = new RTextScrollPane(page);
-        TextEditor.page.setForeground(new Color(224, 224, 224));
-        TextEditor.page.setBackground(new Color(88, 88, 88));
 
+        Gutter gutter = scrollPage.getGutter();
+
+        // Initialise theme colours
+        TextEditor.page.setForeground(new Color(224, 224, 224));
+        TextEditor.page.setBackground(new Color(58, 58, 58));
+        TextEditor.page.setCurrentLineHighlightColor(new Color(84, 84, 84)); // Set colour of highlighted line to dark state
+        gutter.setBackground(new Color(58, 58, 58)); // Set gutter background to dark state
 
         // Creating and displaying menu bar component
         frame.setJMenuBar(MenuBar.createMenuBar(page));

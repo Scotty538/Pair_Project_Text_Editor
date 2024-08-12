@@ -96,12 +96,14 @@ public class MenuBarActionListener {
         } else if (s.equals("Light Mode")) {
             textArea.setForeground(new Color(58, 58, 58));
             textArea.setBackground(new Color(224, 224, 224));
+            TextEditor.page.setCurrentLineHighlightColor(new Color(199, 199, 199)); // Change colour of highlighted line
             if (textArea == TextEditor.page) {
                 TextEditor.darkMode = false;
             }
         } else if (s.equals("Dark Mode")) {
             textArea.setForeground(new Color(224, 224, 224));
             textArea.setBackground(new Color(58, 58, 58));
+            TextEditor.page.setCurrentLineHighlightColor(new Color(84, 84, 84)); // Change colour of highlighted line
             if (textArea == TextEditor.page) {
                 TextEditor.darkMode = true;
             }
