@@ -1,3 +1,5 @@
+import org.fife.ui.rtextarea.Gutter;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -5,7 +7,7 @@ import java.io.*;
 
 public class MenuBarActionListener {
     // Adding events for when a menu button is clicked
-    public static void action(JTextArea textArea, ActionEvent e) {
+    public static void action(JTextArea textArea, ActionEvent e, Gutter gutter) {
         String s = e.getActionCommand();
 
         if (s.equals("New")) {
@@ -90,15 +92,18 @@ public class MenuBarActionListener {
             textArea.paste();
         } else if (s.equals("Light Mode")) {
             textArea.setForeground(new Color(58, 58, 58));
-            textArea.setBackground(new Color(224, 224, 224));
-            ChildWindow.newPage.setCurrentLineHighlightColor(new Color(199, 199, 199)); // Change colour of highlighted line
+            textArea.setBackground(new Color(214, 214, 214));
+            ChildWindow.newPage.setCurrentLineHighlightColor(new Color(189, 189, 189)); // Change colour of highlighted line
             ChildWindow.darkMode = false;
+            gutter.setBackground(new Color(224, 224, 224));
 
         } else if (s.equals("Dark Mode")) {
-            textArea.setForeground(new Color(224, 224, 224));
+            textArea.setForeground(new Color(204, 204, 204));
             textArea.setBackground(new Color(58, 58, 58));
+            gutter.setBackground(new Color(58, 58, 58));
             ChildWindow.newPage.setCurrentLineHighlightColor(new Color(84, 84, 84)); // Change colour of highlighted line
             ChildWindow.darkMode = true;
+
 
         }
     }
