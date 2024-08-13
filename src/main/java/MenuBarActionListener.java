@@ -1,22 +1,21 @@
-import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
-import org.fife.ui.rsyntaxtextarea.Theme;
-import org.fife.ui.rtextarea.Gutter;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.*;
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.Theme;
+import org.fife.ui.rtextarea.Gutter;
 
 public class MenuBarActionListener {
     // Adding events for when a menu button is clicked
-    public static void action(RSyntaxTextArea textArea, ActionEvent e, Gutter gutter) {
+    public static void action(RSyntaxTextArea textArea, ActionEvent e, Gutter gutter, JFrame newWindow) {
         String s = e.getActionCommand();
 
         if (s.equals("New")) {
             ChildWindow newOne = new ChildWindow();
         } else if (s.equals("Open")) {
             // Creating a new JFileChooser object
-            JFileChooser fileChooser = new JFileChooser("F:");
+            JFileChooser fileChooser = new JFileChooser();
 
             // Calling showOpenDialog method to open file browser and select file
             int fileSelection = fileChooser.showOpenDialog(null);
@@ -48,11 +47,12 @@ public class MenuBarActionListener {
                 } catch (Exception eOpen) {
                     JOptionPane.showMessageDialog(ChildWindow.newWindow, eOpen.getMessage());
                 }
+                newWindow.setTitle(filePath.getName());
             }
         } else if (s.equals("Save As")) {
-            // Creating a new JFileChooser object
-            JFileChooser fileChooser = new JFileChooser("F:");
-
+            // Creating a new JFileChooser object with relevant header
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Specify location to save file");
             // Calling showOpenDialog method to open file browser and select directory
             int directorySelection = fileChooser.showSaveDialog(null);
 
@@ -76,6 +76,7 @@ public class MenuBarActionListener {
                 } catch (Exception eSave) {
                     JOptionPane.showMessageDialog(ChildWindow.newWindow, eSave.getMessage());
                 }
+                newWindow.setTitle(filePath.getName());
             }
         } else if (s.equals("Print")) {
             try {

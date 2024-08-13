@@ -67,7 +67,7 @@ public class ChildWindow extends JFrame {
         }
 
         // Creating and displaying menu bar component
-        newWindow.setJMenuBar(MenuBar.createMenuBar(newPage, gutter));
+        newWindow.setJMenuBar(MenuBar.createMenuBar(newPage, gutter, newWindow));
 
         newWindow.add(scrollPage);
         newWindow.setSize(600, 400);
