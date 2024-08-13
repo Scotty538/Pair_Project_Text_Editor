@@ -17,6 +17,7 @@ public class ChildWindow extends JFrame {
         // Adding text area
         newPage = new RSyntaxTextArea();
         newPage.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA); // Set syntax colouring to java conventions
+        newPage.setCodeFoldingEnabled(true);
 
         // Setting syntax highlighting color scheme to match initialised dark mode
         try {
@@ -27,7 +28,7 @@ public class ChildWindow extends JFrame {
             System.out.println("There is a problem with the first RSyntaxTextArea theme in ChildWindow");
         }
 
-        // Set font
+        // Setting font
         Font font = new Font("Consolas",Font.PLAIN,14);
         newPage.setFont(font);
 
