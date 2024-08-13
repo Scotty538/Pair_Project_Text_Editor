@@ -72,6 +72,7 @@ public class MenuBar {
         menuBar.add(fileButton);
         menuBar.add(editButton);
         menuBar.add(viewButton);
+        menuBar.add(SearchBar.createSearchBar());
 
         return menuBar;
     }
