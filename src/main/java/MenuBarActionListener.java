@@ -1,24 +1,21 @@
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.Theme;
+import org.fife.ui.rtextarea.Gutter;
 
-public class MenuBarActionListener implements ActionListener {
+public class MenuBarActionListener {
     // Adding events for when a menu button is clicked
-    public void actionPerformed(ActionEvent e) {
+    public static void action(RSyntaxTextArea textArea, ActionEvent e, Gutter gutter, JFrame newWindow) {
         String s = e.getActionCommand();
 
         if (s.equals("New")) {
-            int userConfirmation = JOptionPane.showConfirmDialog(null,
-                    "Are you sure you want to open a new file? Any unsaved work will be lost", "WARNING", JOptionPane.YES_NO_OPTION);
-            if(userConfirmation == JOptionPane.YES_OPTION) {
-                TextEditor.page.setText("");
-            }
+            ChildWindow newOne = new ChildWindow();
         } else if (s.equals("Open")) {
             // Creating a new JFileChooser object
-            JFileChooser fileChooser = new JFileChooser("F:");
+            JFileChooser fileChooser = new JFileChooser();
 
             // Calling showOpenDialog method to open file browser and select file
             int fileSelection = fileChooser.showOpenDialog(null);
@@ -46,15 +43,16 @@ public class MenuBarActionListener implements ActionListener {
                     }
 
                     // Setting the text to the JTextArea
-                    TextEditor.page.setText(page);
+                    textArea.setText(page);
                 } catch (Exception eOpen) {
-                    JOptionPane.showMessageDialog(TextEditor.frame, eOpen.getMessage());
+                    JOptionPane.showMessageDialog(ChildWindow.newWindow, eOpen.getMessage());
                 }
+                newWindow.setTitle(filePath.getName());
             }
         } else if (s.equals("Save As")) {
-            // Creating a new JFileChooser object
-            JFileChooser fileChooser = new JFileChooser("F:");
-
+            // Creating a new JFileChooser object with relevant header
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Specify location to save file");
             // Calling showOpenDialog method to open file browser and select directory
             int directorySelection = fileChooser.showSaveDialog(null);
 
@@ -71,35 +69,67 @@ public class MenuBarActionListener implements ActionListener {
                     BufferedWriter bw = new BufferedWriter(writer);
 
                     // Write file to new location
-                    bw.write(TextEditor.page.getText());
+                    bw.write(textArea.getText());
 
                     bw.flush();
                     bw.close();
                 } catch (Exception eSave) {
-                    JOptionPane.showMessageDialog(TextEditor.frame, eSave.getMessage());
+                    JOptionPane.showMessageDialog(ChildWindow.newWindow, eSave.getMessage());
                 }
+                newWindow.setTitle(filePath.getName());
             }
         } else if (s.equals("Print")) {
             try {
                 // In case there is a problem with printing
-                TextEditor.page.print();
+                textArea.print();
             } catch (Exception ePrint) {
-                JOptionPane.showMessageDialog(TextEditor.frame, ePrint.getMessage());
+                JOptionPane.showMessageDialog(ChildWindow.newWindow, ePrint.getMessage());
             }
         } else if (s.equals("Select All")) {
-            TextEditor.page.selectAll();
+            textArea.selectAll();
         } else if (s.equals("Cut")) {
-            TextEditor.page.cut();
+            textArea.cut();
         } else if (s.equals("Copy")) {
-            TextEditor.page.copy();
+            textArea.copy();
         } else if (s.equals("Paste")) {
-            TextEditor.page.paste();
+            textArea.paste();
         } else if (s.equals("Light Mode")) {
-            TextEditor.page.setForeground(new Color(58, 58, 58));
-            TextEditor.page.setBackground(new Color(224, 224, 224));
+            // Changing syntax highlighting color scheme to match change in mode
+            try {
+                Theme theme = Theme.load(MenuBarActionListener.class.getResourceAsStream(
+                        "/org/fife/ui/rsyntaxtextarea/themes/default.xml"));
+                theme.apply(textArea);
+            } catch (IOException eRSyntax) {
+                System.out.println("There is a problem with the first RSyntaxTextArea syntax highlighting theme in MenuBarActionListener");
+            }
+
+            Font font = new Font("Consolas",Font.PLAIN,14);
+            textArea.setFont(font);
+
+            textArea.setForeground(new Color(58, 58, 58));
+            textArea.setBackground(new Color(204, 204, 204));
+            ChildWindow.newPage.setCurrentLineHighlightColor(new Color(189, 189, 189)); // Change colour of highlighted line
+            ChildWindow.darkMode = false;
+            gutter.setBackground(new Color(204, 204, 204));
+
         } else if (s.equals("Dark Mode")) {
-            TextEditor.page.setForeground(new Color(224, 224, 224));
-            TextEditor.page.setBackground(new Color(58, 58, 58));
+            // Changing syntax highlighting color scheme to match change in mode
+            try {
+                Theme theme = Theme.load(MenuBarActionListener.class.getResourceAsStream(
+                        "/org/fife/ui/rsyntaxtextarea/themes/monokai.xml"));
+                theme.apply(textArea);
+            } catch (IOException eRSyntax) {
+                System.out.println("There is a problem with the second RSyntaxTextArea syntax highlighting theme in MenuBarActionListener");
+            }
+
+            Font font = new Font("Consolas",Font.PLAIN,14);
+            textArea.setFont(font);
+
+            textArea.setForeground(new Color(204, 204, 204));
+            textArea.setBackground(new Color(58, 58, 58));
+            gutter.setBackground(new Color(58, 58, 58));
+            ChildWindow.newPage.setCurrentLineHighlightColor(new Color(84, 84, 84)); // Change colour of highlighted line
+            ChildWindow.darkMode = true;
         }
     }
 }

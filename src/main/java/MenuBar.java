@@ -1,8 +1,10 @@
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rtextarea.Gutter;
+
 import javax.swing.*;
 
 public class MenuBar {
-    // Method to create manu bar
-    public static JMenuBar createMenuBar() {
+    public static JMenuBar createMenuBar(RSyntaxTextArea page, Gutter gutter, JFrame newWindow) {
         // Creating menu bar
         JMenuBar menuBar = new JMenuBar();
 
@@ -13,18 +15,21 @@ public class MenuBar {
         JMenuItem fileNew = new JMenuItem("New");
         JMenuItem fileOpen = new JMenuItem("Open");
         JMenuItem fileSave = new JMenuItem("Save As");
+        JMenuItem fileExportAsPDF = new JMenuItem("Export As PDF");
         JMenuItem filePrint = new JMenuItem("Print");
 
         // Adding action listener
-        fileNew.addActionListener(new MenuBarActionListener());
-        fileOpen.addActionListener(new MenuBarActionListener());
-        fileSave.addActionListener(new MenuBarActionListener());
-        filePrint.addActionListener(new MenuBarActionListener());
+        fileNew.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
+        fileOpen.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
+        fileSave.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
+        fileExportAsPDF.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
+        filePrint.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
 
         // Adding dropdown items to file
         fileButton.add(fileNew);
         fileButton.add(fileOpen);
         fileButton.add(fileSave);
+        fileButton.add(fileExportAsPDF);
         fileButton.add(filePrint);
 
         // Creating edit menu button
@@ -37,10 +42,10 @@ public class MenuBar {
         JMenuItem editPaste = new JMenuItem("Paste");
 
         // Adding action listener
-        editSelectAll.addActionListener(new MenuBarActionListener());
-        editCut.addActionListener(new MenuBarActionListener());
-        editCopy.addActionListener(new MenuBarActionListener());
-        editPaste.addActionListener(new MenuBarActionListener());
+        editSelectAll.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
+        editCut.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
+        editCopy.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
+        editPaste.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
 
         // Adding dropdown items to edit
         editButton.add(editSelectAll);
@@ -56,8 +61,8 @@ public class MenuBar {
         JMenuItem viewDarkMode = new JMenuItem("Dark Mode");
 
         // Adding action listener
-        viewLightMode.addActionListener(new MenuBarActionListener());
-        viewDarkMode.addActionListener(new MenuBarActionListener());
+        viewLightMode.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
+        viewDarkMode.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
 
         // Adding dropdown items to edit
         viewButton.add(viewLightMode);
