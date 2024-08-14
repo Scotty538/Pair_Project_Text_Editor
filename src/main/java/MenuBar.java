@@ -88,6 +88,7 @@ public class MenuBar {
         menuBar.add(helpButton);
         menuBar.add(Box.createHorizontalGlue());
         menuBar.add(new JLabel("Search: "));
+        menuBar.add(SearchBar.createSearchBar(page));
 
         return menuBar;
     }

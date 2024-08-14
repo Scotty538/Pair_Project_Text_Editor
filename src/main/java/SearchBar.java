@@ -12,6 +12,9 @@ public class SearchBar {
     public static JTextField createSearchBar(RSyntaxTextArea textArea) {
         JTextField searchBar = new JTextField();
 
+        searchBar.setPreferredSize(new Dimension(100, 22)); // Set preferred size of search bar
+        searchBar.setMaximumSize(new Dimension(125, 22)); // Set maximum size of search bar
+
         searchBar.addActionListener(e -> {
             String targetWord = searchBar.getText().toLowerCase();
             findWord(targetWord, textArea);
