@@ -76,5 +76,6 @@ public class ChildWindow extends JFrame {
         newWindow.setLocation(ChildWindow.newWindow.getX() + 50, ChildWindow.newWindow.getY() + 50);
 
         newWindow.setVisible(true);
+        newPage.requestFocusInWindow();
     }
 }
