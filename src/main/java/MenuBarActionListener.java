@@ -90,7 +90,10 @@ public class MenuBarActionListener {
             } catch (Exception ePrinting) {
                 JOptionPane.showMessageDialog(newWindow, "Error printing file: " + ePrinting.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
-        } else if (s.equals("Select All")) {
+        } else if (s.equals("Exit All")) {
+            System.exit(0); // Close all windows
+        }
+        else if (s.equals("Select All")) {
             textArea.selectAll();
         } else if (s.equals("Cut")) {
             textArea.cut();
@@ -133,6 +136,9 @@ public class MenuBarActionListener {
             gutter.setBackground(new Color(58, 58, 58));
             ChildWindow.newPage.setCurrentLineHighlightColor(new Color(84, 84, 84)); // Change colour of highlighted line
             ChildWindow.darkMode = true;
+        } else if (s.equals("About")) {
+            JOptionPane.showMessageDialog(ChildWindow.newWindow, "Made by Scott and Alex \nThis text editor was created for an assignment.\n2024");
+
         }
     }
 

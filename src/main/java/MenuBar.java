@@ -17,6 +17,7 @@ public class MenuBar {
         JMenuItem fileSave = new JMenuItem("Save As");
         JMenuItem fileExportAsPDF = new JMenuItem("Export As PDF");
         JMenuItem filePrint = new JMenuItem("Print");
+        JMenuItem fileExitAll = new JMenuItem("Exit All");
 
         // Adding action listener
         fileNew.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
@@ -24,6 +25,7 @@ public class MenuBar {
         fileSave.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
         fileExportAsPDF.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
         filePrint.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
+        fileExitAll.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
 
         // Adding dropdown items to file
         fileButton.add(fileNew);
@@ -31,6 +33,7 @@ public class MenuBar {
         fileButton.add(fileSave);
         fileButton.add(fileExportAsPDF);
         fileButton.add(filePrint);
+        fileButton.add(fileExitAll);
 
         // Creating edit menu button
         JMenu editButton = new JMenu("Edit");
@@ -68,10 +71,21 @@ public class MenuBar {
         viewButton.add(viewLightMode);
         viewButton.add(viewDarkMode);
 
+        // Creating 'About' section
+        JMenu helpButton = new JMenu("Help");
+        JMenuItem aboutItem = new JMenuItem("About");
+
+        // Adding action listener
+        aboutItem.addActionListener(e ->MenuBarActionListener.action(page, e, gutter, newWindow));
+
+        helpButton.add(SearchBar.createSearchBar(page)); // Add search bar to help dropdown
+        helpButton.add(aboutItem); // Add about item to help dropdown
+
         // Adding file, edit, and mode buttons to menu
         menuBar.add(fileButton);
         menuBar.add(editButton);
         menuBar.add(viewButton);
+        menuBar.add(helpButton);
         menuBar.add(Box.createHorizontalGlue());
         menuBar.add(new JLabel("Search: "));
         menuBar.add(SearchBar.createSearchBar(page));
