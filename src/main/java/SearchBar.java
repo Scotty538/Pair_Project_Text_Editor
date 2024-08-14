@@ -4,17 +4,13 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class SearchBar {
+    // Create search bar UI component
     public static JTextField createSearchBar(RSyntaxTextArea textArea) {
         JTextField searchBar = new JTextField();
-
-        // Set preferred size (width, height)
-        searchBar.setPreferredSize(new Dimension(100, 20)); // Example size
-
-        // Set minimum and maximum size if needed
-        searchBar.setMinimumSize(new Dimension(100, 20));
-        searchBar.setMaximumSize(new Dimension(100, 20));
 
         searchBar.addActionListener(e -> {
             String targetWord = searchBar.getText().toLowerCase();

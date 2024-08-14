@@ -77,7 +77,9 @@ public class MenuBar {
 
         // Adding action listener
         aboutItem.addActionListener(e ->MenuBarActionListener.action(page, e, gutter, newWindow));
-        helpButton.add(aboutItem); // Add about item to help button
+
+        helpButton.add(SearchBar.createSearchBar(page)); // Add search bar to help dropdown
+        helpButton.add(aboutItem); // Add about item to help dropdown
 
         // Adding file, edit, and mode buttons to menu
         menuBar.add(fileButton);
@@ -86,7 +88,6 @@ public class MenuBar {
         menuBar.add(helpButton);
         menuBar.add(Box.createHorizontalGlue());
         menuBar.add(new JLabel("Search: "));
-        menuBar.add(SearchBar.createSearchBar(page));
 
         return menuBar;
     }
