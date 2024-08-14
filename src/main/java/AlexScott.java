@@ -2,7 +2,7 @@ import javax.swing.*;
 
 public class AlexScott {
     public static void main(String args[]) {
-        // Setting dark theme for first window
+        // Setting menuBar color to dark theme
         try {
             UIManager.setLookAndFeel("com.formdev.flatlaf.FlatDarkLaf");
         } catch (Exception ex) {
