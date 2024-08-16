@@ -9,10 +9,18 @@ public class ChildWindow extends JFrame {
     public static RSyntaxTextArea newPage;
     public static JFrame newWindow;
     public static boolean darkMode = true;
+    public static FontSetter fontStyle = new FontSetter();
 
     // Constructor
     ChildWindow () {
         newWindow = new JFrame("New Text Document");
+
+        // Setting menuBar color to dark theme
+        try {
+            UIManager.setLookAndFeel("com.formdev.flatlaf.FlatDarkLaf");
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
 
         // Adding text area
         newPage = new RSyntaxTextArea();
@@ -28,9 +36,6 @@ public class ChildWindow extends JFrame {
             System.out.println("There is a problem with the first RSyntaxTextArea theme in ChildWindow");
         }
 
-        // Setting font
-        Font font = new Font("Consolas",Font.PLAIN,14);
-        newPage.setFont(font);
 
         // Adding scrollable panel with the editor page
         RTextScrollPane scrollPage = new RTextScrollPane(newPage);
@@ -45,7 +50,8 @@ public class ChildWindow extends JFrame {
             } catch (IOException eRSyntax) {
                 System.out.println("There is a problem with the second RSyntaxTextArea syntax highlighting theme in ChildWindow");
             }
-            newPage.setFont(font);
+
+            newPage.setFont(fontStyle.consolas());
 
             newPage.setForeground(new Color(204, 204, 204));
             newPage.setBackground(new Color(58, 58, 58));
@@ -59,7 +65,8 @@ public class ChildWindow extends JFrame {
             } catch (IOException eRSyntax) {
                 System.out.println("There is a problem with the third RSyntaxTextArea syntax highlighting theme");
             }
-            newPage.setFont(font);
+
+            newPage.setFont(fontStyle.consolas());
 
             newPage.setForeground(new Color(58, 58, 58));
             newPage.setBackground(new Color(204, 204, 204));

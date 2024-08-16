@@ -12,6 +12,7 @@ import org.fife.ui.rsyntaxtextarea.Theme;
 import org.fife.ui.rtextarea.Gutter;
 
 public class MenuBarActionListener {
+    public static FontSetter fontStyle = new FontSetter();
     // Adding events for when a menu button is clicked
     public static void action(RSyntaxTextArea textArea, ActionEvent e, Gutter gutter, JFrame newWindow) {
         String s = e.getActionCommand();
@@ -118,8 +119,7 @@ public class MenuBarActionListener {
             }
             SwingUtilities.updateComponentTreeUI(newWindow);
 
-            Font font = new Font("Consolas", Font.PLAIN, 14);
-            textArea.setFont(font);
+            textArea.setFont(fontStyle.consolas());
 
             textArea.setForeground(new Color(58, 58, 58));
             textArea.setBackground(new Color(214, 214, 214));
@@ -143,8 +143,8 @@ public class MenuBarActionListener {
             } catch (IOException eRSyntax) {
                 JOptionPane.showMessageDialog(newWindow, "Error setting theme for light mode: " + eRSyntax.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
-            Font font = new Font("Consolas", Font.PLAIN, 14);
-            textArea.setFont(font);
+
+            textArea.setFont(fontStyle.consolas());
 
             textArea.setForeground(new Color(204, 204, 204));
             textArea.setBackground(new Color(58, 58, 58));
