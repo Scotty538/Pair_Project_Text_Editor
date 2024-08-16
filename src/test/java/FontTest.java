@@ -1,5 +1,10 @@
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.junit.Test;
+
+import javax.swing.*;
+
+import java.awt.*;
+
 import static org.junit.Assert.assertEquals;
 
 public class FontTest {
@@ -14,4 +19,11 @@ public class FontTest {
         ChildWindow window = new ChildWindow(); // Instantiate ChildWindow to test
         assertEquals("Consolas", checkFont(ChildWindow.newPage));
     }
+
+//    @Test
+//    public void checkBackgroundColor() {
+//        AlexScott window = new AlexScott(); // Instantiate ChildWindow to test
+//        assertEquals(new Color(58, 58, 58), ChildWindow.newPage.getBackground());
+//    }
+
 }

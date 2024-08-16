@@ -8,6 +8,7 @@ public class AlexScott {
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
         }
+
         ChildWindow window = new ChildWindow();
     }
 }
