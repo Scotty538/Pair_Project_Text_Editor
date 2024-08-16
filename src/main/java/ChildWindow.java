@@ -14,6 +14,13 @@ public class ChildWindow extends JFrame {
     ChildWindow () {
         newWindow = new JFrame("New Text Document");
 
+        // Setting menuBar color to dark theme
+        try {
+            UIManager.setLookAndFeel("com.formdev.flatlaf.FlatDarkLaf");
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
+
         // Adding text area
         newPage = new RSyntaxTextArea();
         newPage.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA); // Set syntax colouring to java conventions
@@ -28,9 +35,6 @@ public class ChildWindow extends JFrame {
             System.out.println("There is a problem with the first RSyntaxTextArea theme in ChildWindow");
         }
 
-        // Setting font
-        Font font = new Font("Consolas",Font.PLAIN,14);
-        newPage.setFont(font);
 
         // Adding scrollable panel with the editor page
         RTextScrollPane scrollPage = new RTextScrollPane(newPage);
@@ -45,6 +49,8 @@ public class ChildWindow extends JFrame {
             } catch (IOException eRSyntax) {
                 System.out.println("There is a problem with the second RSyntaxTextArea syntax highlighting theme in ChildWindow");
             }
+
+            Font font = new Font("Consolas", Font.PLAIN, 14);
             newPage.setFont(font);
 
             newPage.setForeground(new Color(204, 204, 204));
@@ -59,6 +65,8 @@ public class ChildWindow extends JFrame {
             } catch (IOException eRSyntax) {
                 System.out.println("There is a problem with the third RSyntaxTextArea syntax highlighting theme");
             }
+
+            Font font = new Font("Consolas", Font.PLAIN, 14);
             newPage.setFont(font);
 
             newPage.setForeground(new Color(58, 58, 58));
@@ -73,7 +81,6 @@ public class ChildWindow extends JFrame {
         newWindow.add(scrollPage);
         newWindow.setSize(600, 400);
         newWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        newWindow.setLocation(ChildWindow.newWindow.getX() + 50, ChildWindow.newWindow.getY() + 50);
 
         newWindow.setVisible(true);
         newPage.requestFocusInWindow();

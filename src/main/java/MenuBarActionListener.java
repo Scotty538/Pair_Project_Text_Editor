@@ -102,6 +102,12 @@ public class MenuBarActionListener {
         } else if (s.equals("Paste")) {
             textArea.paste();
         } else if (s.equals("Light Mode")) {
+            // Setting menuBar color to light theme
+            try {
+                UIManager.setLookAndFeel("com.formdev.flatlaf.FlatLightLaf");
+            } catch (Exception ex) {
+                System.err.println("Failed to initialize LaF");
+            }
             // Changing syntax highlighting color scheme to match changing mode
             try {
                 Theme theme = Theme.load(MenuBarActionListener.class.getResourceAsStream(
@@ -110,16 +116,25 @@ public class MenuBarActionListener {
             } catch (IOException eRSyntax) {
                 JOptionPane.showMessageDialog(newWindow, "Error setting theme for light mode: " + eRSyntax.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
+            SwingUtilities.updateComponentTreeUI(newWindow);
 
             Font font = new Font("Consolas", Font.PLAIN, 14);
             textArea.setFont(font);
 
             textArea.setForeground(new Color(58, 58, 58));
-            textArea.setBackground(new Color(204, 204, 204));
+            textArea.setBackground(new Color(214, 214, 214));
             ChildWindow.newPage.setCurrentLineHighlightColor(new Color(189, 189, 189)); // Change colour of highlighted line
             ChildWindow.darkMode = false;
-            gutter.setBackground(new Color(204, 204, 204));
+            gutter.setBackground(new Color(214, 214, 214));
         } else if (s.equals("Dark Mode")) {
+            // Setting menuBar color to dark theme
+            try {
+                UIManager.setLookAndFeel("com.formdev.flatlaf.FlatDarkLaf");
+            } catch (Exception ex) {
+                System.err.println("Failed to initialize LaF");
+            }
+            SwingUtilities.updateComponentTreeUI(newWindow);
+
             // Changing syntax highlighting color scheme to match change in mode
             try {
                 Theme theme = Theme.load(MenuBarActionListener.class.getResourceAsStream(
@@ -128,6 +143,7 @@ public class MenuBarActionListener {
             } catch (IOException eRSyntax) {
                 JOptionPane.showMessageDialog(newWindow, "Error setting theme for light mode: " + eRSyntax.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
+
             Font font = new Font("Consolas", Font.PLAIN, 14);
             textArea.setFont(font);
 
