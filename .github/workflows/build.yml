@@ -28,6 +28,6 @@ jobs:
 
     - name: Set DISPLAY environment variable
       run: echo "DISPLAY=:99" >> $GITHUB_ENV
-  
+
     - name: Run tests
       run: mvn clean test
