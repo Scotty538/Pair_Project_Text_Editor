@@ -9,7 +9,6 @@ public class ChildWindow extends JFrame {
     public static RSyntaxTextArea newPage;
     public static JFrame newWindow;
     public static boolean darkMode = true;
-    public static FontSetter fontStyle = new FontSetter();
 
     // Constructor
     ChildWindow () {
@@ -51,7 +50,8 @@ public class ChildWindow extends JFrame {
                 System.out.println("There is a problem with the second RSyntaxTextArea syntax highlighting theme in ChildWindow");
             }
 
-            newPage.setFont(fontStyle.consolas());
+            Font font = new Font("Consolas", Font.PLAIN, 14);
+            newPage.setFont(font);
 
             newPage.setForeground(new Color(204, 204, 204));
             newPage.setBackground(new Color(58, 58, 58));
@@ -66,7 +66,8 @@ public class ChildWindow extends JFrame {
                 System.out.println("There is a problem with the third RSyntaxTextArea syntax highlighting theme");
             }
 
-            newPage.setFont(fontStyle.consolas());
+            Font font = new Font("Consolas", Font.PLAIN, 14);
+            newPage.setFont(font);
 
             newPage.setForeground(new Color(58, 58, 58));
             newPage.setBackground(new Color(204, 204, 204));
