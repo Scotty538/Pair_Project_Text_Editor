@@ -29,6 +29,7 @@ public class MenuBarActionListener {
             fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("OpenDocument Text", "odt"));
             fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("C++", "cpp"));
             fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Java", "java"));
+            fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Javascript", "js"));
             fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Python", "py"));
 
             // Calling showOpenDialog method to open file browser and select file
