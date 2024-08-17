@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.*;
+import java.util.Date;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.Document;
@@ -91,7 +92,10 @@ public class MenuBarActionListener {
                 JOptionPane.showMessageDialog(newWindow, "Error printing file: " + ePrinting.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else if (s.equals("Exit All")) {
-            System.exit(0); // Close all windows
+            int result = JOptionPane.showConfirmDialog(ChildWindow.newWindow, "Are you sure you want to quit the programme? Any unsaved changes will be lost.", "Warning", JOptionPane.WARNING_MESSAGE);
+            if (result == JOptionPane.YES_OPTION) {
+                System.exit(0); // Close all windows
+            }
         }
         else if (s.equals("Select All")) {
             textArea.selectAll();
@@ -101,8 +105,16 @@ public class MenuBarActionListener {
             textArea.copy();
         } else if (s.equals("Paste")) {
             textArea.paste();
+        } else if (s.equals("Date & Time")) {
+            String existing = textArea.getText();
+            Date timeAndDate = new Date();
+            existing = timeAndDate + "\n\n" + existing;
+
+            // Printing to the page
+            textArea.setText(existing);
         } else if (s.equals("Light Mode")) {
-            // Setting menuBar color to light theme
+
+            // Setting menuBar color to dark theme
             try {
                 UIManager.setLookAndFeel("com.formdev.flatlaf.FlatLightLaf");
             } catch (Exception ex) {
@@ -116,6 +128,7 @@ public class MenuBarActionListener {
             } catch (IOException eRSyntax) {
                 JOptionPane.showMessageDialog(newWindow, "Error setting theme for light mode: " + eRSyntax.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
+
             SwingUtilities.updateComponentTreeUI(newWindow);
 
             Font font = new Font("Consolas", Font.PLAIN, 14);
@@ -123,18 +136,17 @@ public class MenuBarActionListener {
 
             textArea.setForeground(new Color(58, 58, 58));
             textArea.setBackground(new Color(214, 214, 214));
+            gutter.setBackground(new Color(214, 214, 214));
             ChildWindow.newPage.setCurrentLineHighlightColor(new Color(189, 189, 189)); // Change colour of highlighted line
             ChildWindow.darkMode = false;
-            gutter.setBackground(new Color(214, 214, 214));
         } else if (s.equals("Dark Mode")) {
+
             // Setting menuBar color to dark theme
             try {
                 UIManager.setLookAndFeel("com.formdev.flatlaf.FlatDarkLaf");
             } catch (Exception ex) {
                 System.err.println("Failed to initialize LaF");
             }
-            SwingUtilities.updateComponentTreeUI(newWindow);
-
             // Changing syntax highlighting color scheme to match change in mode
             try {
                 Theme theme = Theme.load(MenuBarActionListener.class.getResourceAsStream(
@@ -143,6 +155,9 @@ public class MenuBarActionListener {
             } catch (IOException eRSyntax) {
                 JOptionPane.showMessageDialog(newWindow, "Error setting theme for light mode: " + eRSyntax.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
+
+
+            SwingUtilities.updateComponentTreeUI(newWindow);
 
             Font font = new Font("Consolas", Font.PLAIN, 14);
             textArea.setFont(font);
@@ -153,8 +168,7 @@ public class MenuBarActionListener {
             ChildWindow.newPage.setCurrentLineHighlightColor(new Color(84, 84, 84)); // Change colour of highlighted line
             ChildWindow.darkMode = true;
         } else if (s.equals("About")) {
-            JOptionPane.showMessageDialog(ChildWindow.newWindow, "Made by Scott and Alex \nThis text editor was created for an assignment.\n2024");
-
+            JOptionPane.showMessageDialog(ChildWindow.newWindow, "Created by Alex Malone & Scott O'Connor for Assignment 1 of 159251, 2024");
         }
     }
 

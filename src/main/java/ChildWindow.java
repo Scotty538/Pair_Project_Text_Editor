@@ -12,29 +12,21 @@ public class ChildWindow extends JFrame {
 
     // Constructor
     ChildWindow () {
-        newWindow = new JFrame("New Text Document");
-
-        // Setting menuBar color to dark theme
-        try {
-            UIManager.setLookAndFeel("com.formdev.flatlaf.FlatDarkLaf");
-        } catch (Exception ex) {
-            System.err.println("Failed to initialize LaF");
-        }
+        newWindow = new JFrame("TE Text Editor");
 
         // Adding text area
         newPage = new RSyntaxTextArea();
         newPage.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA); // Set syntax colouring to java conventions
         newPage.setCodeFoldingEnabled(true);
 
-        // Setting syntax highlighting color scheme to match initialised dark mode
-        try {
-            Theme theme = Theme.load(getClass().getResourceAsStream(
-                    "/org/fife/ui/rsyntaxtextarea/themes/monokai.xml"));
-            theme.apply(newPage);
-        } catch (IOException eRSyntax) {
-            System.out.println("There is a problem with the first RSyntaxTextArea theme in ChildWindow");
-        }
-
+//        // Setting syntax highlighting color scheme to match initialised dark mode
+//        try {
+//            Theme theme = Theme.load(getClass().getResourceAsStream(
+//                    "/org/fife/ui/rsyntaxtextarea/themes/monokai.xml"));
+//            theme.apply(newPage);
+//        } catch (IOException eRSyntax) {
+//            System.out.println("There is a problem with the first RSyntaxTextArea theme in ChildWindow");
+//        }
 
         // Adding scrollable panel with the editor page
         RTextScrollPane scrollPage = new RTextScrollPane(newPage);
@@ -42,6 +34,13 @@ public class ChildWindow extends JFrame {
 
         // Setting background/foreground colours of new window to match the current window
         if (darkMode) {
+            // Setting menuBar color to dark theme
+            try {
+                UIManager.setLookAndFeel("com.formdev.flatlaf.FlatDarkLaf");
+            } catch (Exception ex) {
+                System.err.println("Failed to initialize LaF");
+            }
+
             try {
                 Theme theme = Theme.load(getClass().getResourceAsStream(
                         "/org/fife/ui/rsyntaxtextarea/themes/monokai.xml"));
@@ -49,6 +48,8 @@ public class ChildWindow extends JFrame {
             } catch (IOException eRSyntax) {
                 System.out.println("There is a problem with the second RSyntaxTextArea syntax highlighting theme in ChildWindow");
             }
+
+            SwingUtilities.updateComponentTreeUI(newWindow);
 
             Font font = new Font("Consolas", Font.PLAIN, 14);
             newPage.setFont(font);
@@ -58,6 +59,13 @@ public class ChildWindow extends JFrame {
             gutter.setBackground(new Color(58, 58, 58));
             newPage.setCurrentLineHighlightColor(new Color(84, 84, 84));// Change colour of highlighted line
         } else {
+            // Setting menuBar color to light theme
+            try {
+                UIManager.setLookAndFeel("com.formdev.flatlaf.FlatLightLaf");
+            } catch (Exception ex) {
+                System.err.println("Failed to initialize LaF");
+            }
+
             try {
                 Theme theme = Theme.load(getClass().getResourceAsStream(
                         "/org/fife/ui/rsyntaxtextarea/themes/default.xml"));
@@ -66,12 +74,14 @@ public class ChildWindow extends JFrame {
                 System.out.println("There is a problem with the third RSyntaxTextArea syntax highlighting theme");
             }
 
+            SwingUtilities.updateComponentTreeUI(newWindow);
+
             Font font = new Font("Consolas", Font.PLAIN, 14);
             newPage.setFont(font);
 
             newPage.setForeground(new Color(58, 58, 58));
-            newPage.setBackground(new Color(204, 204, 204));
-            gutter.setBackground(new Color(204, 204, 204));
+            newPage.setBackground(new Color(214, 214, 214));
+            gutter.setBackground(new Color(214, 214, 214));
             newPage.setCurrentLineHighlightColor(new Color(189, 189, 189));
         }
 
@@ -81,7 +91,7 @@ public class ChildWindow extends JFrame {
         newWindow.add(scrollPage);
         newWindow.setSize(600, 400);
         newWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+        newWindow.setLocation(50,50);
         newWindow.setVisible(true);
         newPage.requestFocusInWindow();
     }
