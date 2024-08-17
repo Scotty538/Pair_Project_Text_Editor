@@ -19,15 +19,6 @@ public class ChildWindow extends JFrame {
         newPage.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA); // Set syntax colouring to java conventions
         newPage.setCodeFoldingEnabled(true);
 
-//        // Setting syntax highlighting color scheme to match initialised dark mode
-//        try {
-//            Theme theme = Theme.load(getClass().getResourceAsStream(
-//                    "/org/fife/ui/rsyntaxtextarea/themes/monokai.xml"));
-//            theme.apply(newPage);
-//        } catch (IOException eRSyntax) {
-//            System.out.println("There is a problem with the first RSyntaxTextArea theme in ChildWindow");
-//        }
-
         // Adding scrollable panel with the editor page
         RTextScrollPane scrollPage = new RTextScrollPane(newPage);
         Gutter gutter = scrollPage.getGutter();

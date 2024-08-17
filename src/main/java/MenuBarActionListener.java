@@ -24,9 +24,12 @@ public class MenuBarActionListener {
             JFileChooser fileChooser = new JFileChooser();
 
             // Adding multiple file filters
-            fileChooser.setFileFilter(new FileNameExtensionFilter("Text Files", "txt"));
-            fileChooser.setFileFilter(new FileNameExtensionFilter("Rich Text Format", "rtf"));
-            fileChooser.setFileFilter(new FileNameExtensionFilter("OpenDocument Text", "odt"));
+            fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Text Files", "txt"));
+            fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Rich Text Format", "rtf"));
+            fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("OpenDocument Text", "odt"));
+            fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("C++", "cpp"));
+            fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Java", "java"));
+            fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Python", "py"));
 
             // Calling showOpenDialog method to open file browser and select file
             int returnValue = fileChooser.showOpenDialog(null);
@@ -35,16 +38,24 @@ public class MenuBarActionListener {
                 File selectedFile = fileChooser.getSelectedFile();
                 String filePath = selectedFile.getAbsolutePath();
 
-                // Selecting appropriate read method depending on file type
+                // Selecting appropriate syntax depending on file type
                 try {
                     if (filePath.endsWith(".txt")) {
-                        // Reading plain text file
                         textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_NONE);
-                        textArea.setText(readTxtFile(selectedFile, newWindow));
+                        textArea.setText(readFile(selectedFile, newWindow));
                     } else if (filePath.endsWith(".rtf")) {
-                        // Reading RTF file
                         textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_NONE);
                         textArea.setText(readRTFFile(selectedFile, newWindow));
+                    } else if (filePath.endsWith(".java")) {
+                        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+                        textArea.setText(readFile(selectedFile, newWindow));
+                    } else if (filePath.endsWith(".py")) {
+                        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_PYTHON);
+                        textArea.setText(readFile(selectedFile, newWindow));
+                    } else if (filePath.endsWith(".cpp")) {
+                        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_CPLUSPLUS);
+                        textArea.setText(readFile(selectedFile, newWindow));
+
                     } else {
                         textArea.setText("Cannot open file. Unknown file type.");
                     }
@@ -128,7 +139,7 @@ public class MenuBarActionListener {
             } catch (IOException eRSyntax) {
                 JOptionPane.showMessageDialog(newWindow, "Error setting theme for light mode: " + eRSyntax.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
-
+            // Updating current window
             SwingUtilities.updateComponentTreeUI(newWindow);
 
             Font font = new Font("Consolas", Font.PLAIN, 14);
@@ -155,8 +166,7 @@ public class MenuBarActionListener {
             } catch (IOException eRSyntax) {
                 JOptionPane.showMessageDialog(newWindow, "Error setting theme for light mode: " + eRSyntax.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
-
-
+            // Updating current window
             SwingUtilities.updateComponentTreeUI(newWindow);
 
             Font font = new Font("Consolas", Font.PLAIN, 14);
@@ -172,7 +182,7 @@ public class MenuBarActionListener {
         }
     }
 
-    private static String readTxtFile(File file, JFrame newWindow) throws IOException {
+    private static String readFile(File file, JFrame newWindow) throws IOException {
         String line, page = "";
         try {
             FileReader fr = new FileReader(file);
