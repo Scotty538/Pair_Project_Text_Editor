@@ -83,13 +83,18 @@ public class MenuBarActionListener {
             // Creating a new JFileChooser object with relevant header
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("Specify location to save file");
+
             // Calling showOpenDialog method to open file browser and select directory
             int directorySelection = fileChooser.showSaveDialog(null);
 
             if (directorySelection == JFileChooser.APPROVE_OPTION) {
 
-                // Obtaining the path to the selected directory
-                File filePath = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                // Obtaining the path to the selected directory and forcing file to be saved as text file.
+                String pathName = fileChooser.getSelectedFile().getAbsolutePath();
+                if (!pathName.endsWith(".txt")) {
+                    pathName = pathName + ".txt";
+                }
+                File filePath = new File(pathName);
 
                 try {
                     // Creating file writer
