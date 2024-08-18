@@ -14,6 +14,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>com.formdev</groupId>
@@ -32,10 +39,16 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
+        <dependency> <!-- ODF toolkit (for opening ODT files) -->
             <groupId>org.odftoolkit</groupId>
             <artifactId>odfdom-java</artifactId>
             <version>0.12.0</version>
+        </dependency>
+        <dependency> <!-- iText (for exporting to pdf) -->
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itext7-core</artifactId>
+            <version>8.0.5</version>
+            <type>pom</type>
         </dependency>
 
     </dependencies>

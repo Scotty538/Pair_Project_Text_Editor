@@ -6,14 +6,19 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.Document;
 import javax.swing.text.rtf.RTFEditorKit;
-
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rsyntaxtextarea.Theme;
 import org.fife.ui.rtextarea.Gutter;
 
+// Odt support imports
 import org.odftoolkit.odfdom.doc.OdfDocument;
 import org.odftoolkit.odfdom.incubator.doc.text.OdfEditableTextExtractor;
+
+// Export to pdf imports
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.element.Paragraph;
 
 public class MenuBarActionListener {
     // Adding events for when a menu button is clicked
@@ -104,6 +109,8 @@ public class MenuBarActionListener {
                 // Updating window title to the file name
                 newWindow.setTitle(filePath.getName());
             }
+        } else if (s.equals("Export As PDF")) {
+            exportToPdf(textArea, newWindow);
         } else if (s.equals("Print")) {
             try {
                 // In case there is a problem with printing
@@ -227,6 +234,38 @@ public class MenuBarActionListener {
             JOptionPane.showMessageDialog(newWindow, "Error reading ODT file: " + eODT.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         return ""; // Return empty string if error occurred
+    }
+    private static void exportToPdf(RSyntaxTextArea textArea, JFrame newWindow) {
+        // Creating new file chooser
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Specify location to save PDF file");
+        // Calling showOpenDialog method to open file browser
+        int directorySelection = fileChooser.showSaveDialog(null);
+
+        if (directorySelection == JFileChooser.APPROVE_OPTION) {
+            // Getting path to directory
+            File file = fileChooser.getSelectedFile();
+            String filePath = file.getAbsolutePath();
+
+            // Make file has .pdf extension
+            if (!filePath.toLowerCase().endsWith(".pdf")) {
+                filePath += ".pdf";
+            }
+            try {
+                // Creating PDF writer and document
+                PdfWriter writer = new PdfWriter(filePath);
+                PdfDocument pdfDocument = new PdfDocument(writer);
+                com.itextpdf.layout.Document pdfLayoutDocument = new com.itextpdf.layout.Document(pdfDocument); // Must write out entire iText Document path because Swing's Document is already imported
+
+                // Add content from editor to PDF
+                pdfLayoutDocument.add(new Paragraph(textArea.getText()));
+
+                // Close the document
+                pdfLayoutDocument.close();
+            } catch (Exception eExportPDF) {
+                JOptionPane.showMessageDialog(newWindow, "Error saving PDF: " + eExportPDF.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 }
 
