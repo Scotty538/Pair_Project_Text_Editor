@@ -8,10 +8,10 @@ public class MenuBar {
         // Creating menu bar
         JMenuBar menuBar = new JMenuBar();
 
-        // Creating file menu button
+        // Creating File menu button
         JMenu fileButton = new JMenu("File");
 
-        // Creating file menu dropdown items
+        // Creating File menu dropdown items
         JMenuItem fileNew = new JMenuItem("New");
         JMenuItem fileOpen = new JMenuItem("Open");
         JMenuItem fileSave = new JMenuItem("Save As");
@@ -27,7 +27,7 @@ public class MenuBar {
         filePrint.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
         fileExitAll.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
 
-        // Adding dropdown items to file
+        // Adding dropdown items to File
         fileButton.add(fileNew);
         fileButton.add(fileOpen);
         fileButton.add(fileSave);
@@ -35,31 +35,34 @@ public class MenuBar {
         fileButton.add(filePrint);
         fileButton.add(fileExitAll);
 
-        // Creating edit menu button
+        // Creating Edit menu button
         JMenu editButton = new JMenu("Edit");
 
-        // Creating edit dropdown items
+        // Creating Edit dropdown items
         JMenuItem editSelectAll = new JMenuItem("Select All");
         JMenuItem editCut = new JMenuItem("Cut");
         JMenuItem editCopy = new JMenuItem("Copy");
         JMenuItem editPaste = new JMenuItem("Paste");
+        JMenuItem editTimeAndDate = new JMenuItem("Date & Time");
 
         // Adding action listener
         editSelectAll.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
         editCut.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
         editCopy.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
         editPaste.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
+        editTimeAndDate.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
 
-        // Adding dropdown items to edit
+        // Adding dropdown items to Edit
         editButton.add(editSelectAll);
         editButton.add(editCut);
         editButton.add(editCopy);
         editButton.add(editPaste);
+        editButton.add(editTimeAndDate);
 
-        // Creating mode menu button
+        // Creating View mode menu button
         JMenu viewButton = new JMenu("View");
 
-        // Creating edit dropdown items
+        // Creating View dropdown items
         JMenuItem viewLightMode = new JMenuItem("Light Mode");
         JMenuItem viewDarkMode = new JMenuItem("Dark Mode");
 
@@ -67,28 +70,30 @@ public class MenuBar {
         viewLightMode.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
         viewDarkMode.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
 
-        // Adding dropdown items to edit
+        // Adding dropdown items to View
         viewButton.add(viewLightMode);
         viewButton.add(viewDarkMode);
 
-        // Creating 'About' section
-        JMenu helpButton = new JMenu("Help");
+        // Creating 'AlexScott' section
+        JMenu nameButton = new JMenu("TE");
         JMenuItem aboutItem = new JMenuItem("About");
+
+        // Adding dropdown item to AlexScott
+        nameButton.add(aboutItem);
 
         // Adding action listener
         aboutItem.addActionListener(e ->MenuBarActionListener.action(page, e, gutter, newWindow));
 
-        helpButton.add(SearchBar.createSearchBar(page)); // Add search bar to help dropdown
-        helpButton.add(aboutItem); // Add about item to help dropdown
+        // Creating 'Search' section
+        JMenu searchButton = new JMenu("Search");
+        searchButton.add(SearchBar.createSearchBar(page)); // Add search bar to help dropdown
 
         // Adding file, edit, and mode buttons to menu
+        menuBar.add(nameButton);
         menuBar.add(fileButton);
         menuBar.add(editButton);
         menuBar.add(viewButton);
-        menuBar.add(helpButton);
-        menuBar.add(Box.createHorizontalGlue());
-        menuBar.add(new JLabel("Search: "));
-        menuBar.add(SearchBar.createSearchBar(page));
+        menuBar.add(searchButton);
 
         return menuBar;
     }
