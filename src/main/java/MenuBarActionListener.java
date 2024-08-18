@@ -12,6 +12,9 @@ import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rsyntaxtextarea.Theme;
 import org.fife.ui.rtextarea.Gutter;
 
+import org.odftoolkit.odfdom.doc.OdfDocument;
+import org.odftoolkit.odfdom.incubator.doc.text.OdfEditableTextExtractor;
+
 public class MenuBarActionListener {
     // Adding events for when a menu button is clicked
     public static void action(RSyntaxTextArea textArea, ActionEvent e, Gutter gutter, JFrame newWindow) {
@@ -47,6 +50,9 @@ public class MenuBarActionListener {
                     } else if (filePath.endsWith(".rtf")) {
                         textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_NONE);
                         textArea.setText(readRTFFile(selectedFile, newWindow));
+                    } else if (filePath.endsWith(".odt")) {
+                        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_NONE);
+                        textArea.setText(readODTFile(selectedFile, newWindow));
                     } else if (filePath.endsWith(".java")) {
                         textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
                         textArea.setText(readFile(selectedFile, newWindow));
@@ -211,6 +217,16 @@ public class MenuBarActionListener {
             JOptionPane.showMessageDialog(newWindow, "Error reading RTF file: " + eRTF.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         return writer.toString();
+    }
+    private static String readODTFile(File file, JFrame newWindow) throws IOException {
+        try (OdfDocument document = OdfDocument.loadDocument(file)) { // Load odt file
+            // Extract odt text to object
+            OdfEditableTextExtractor extractor = OdfEditableTextExtractor.newOdfEditableTextExtractor(document);
+            return extractor.getText(); // Return the odt text
+        } catch (Exception eODT) {
+            JOptionPane.showMessageDialog(newWindow, "Error reading ODT file: " + eODT.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return ""; // Return empty string if error occurred
     }
 }
 
