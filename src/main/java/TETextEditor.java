@@ -10,6 +10,6 @@ public class TETextEditor {
             System.err.println("Failed to initialize LaF");
         }
 
-        ChildWindow window = new ChildWindow();
+        new ChildWindow();
     }
 }

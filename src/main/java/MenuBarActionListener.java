@@ -26,7 +26,7 @@ public class MenuBarActionListener {
         String s = e.getActionCommand();
 
         if (s.equals("New")) {
-            ChildWindow newOne = new ChildWindow();
+            new ChildWindow();
         } else if (s.equals("Open")) {
             // Creating a new JFileChooser object
             JFileChooser fileChooser = new JFileChooser();

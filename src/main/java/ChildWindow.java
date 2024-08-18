@@ -82,7 +82,7 @@ public class ChildWindow extends JFrame {
 
         newWindow.add(scrollPage);
         newWindow.setSize(600, 400);
-        newWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        newWindow.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         newWindow.setLocation(50,50);
         newWindow.setVisible(true);
         newPage.requestFocusInWindow();
