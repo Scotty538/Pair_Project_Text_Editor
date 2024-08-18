@@ -17,6 +17,7 @@ public class ChildWindow extends JFrame {
         // Adding text area
         newPage = new RSyntaxTextArea();
         newPage.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA); // Set syntax colouring to java conventions
+        newPage.setLineWrap(true);
         newPage.setCodeFoldingEnabled(true);
 
         // Adding scrollable panel with the editor page
