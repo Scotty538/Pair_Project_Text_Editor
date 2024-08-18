@@ -56,7 +56,9 @@ public class MenuBarActionListener {
                     } else if (filePath.endsWith(".cpp")) {
                         textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_CPLUSPLUS);
                         textArea.setText(readFile(selectedFile, newWindow));
-
+                    } else if (filePath.endsWith(".js")) {
+                        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVASCRIPT);
+                        textArea.setText(readFile(selectedFile, newWindow));
                     } else {
                         textArea.setText("Cannot open file. Unknown file type.");
                     }
@@ -104,7 +106,7 @@ public class MenuBarActionListener {
                 JOptionPane.showMessageDialog(newWindow, "Error printing file: " + ePrinting.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else if (s.equals("Exit All")) {
-            int result = JOptionPane.showConfirmDialog(ChildWindow.newWindow, "Are you sure you want to quit the programme? Any unsaved changes will be lost.", "Warning", JOptionPane.WARNING_MESSAGE);
+            int result = JOptionPane.showConfirmDialog(ChildWindow.newWindow, "Are you sure you want to quit the programme? Any unsaved changes will be lost.", "Warning", JOptionPane.YES_NO_OPTION);
             if (result == JOptionPane.YES_OPTION) {
                 System.exit(0); // Close all windows
             }
