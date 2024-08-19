@@ -1,9 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Map;
 
 import org.fife.ui.rtextarea.*;
 import org.fife.ui.rsyntaxtextarea.*;
+import org.yaml.snakeyaml.Yaml;
 
 public class ChildWindow extends JFrame {
     public static RSyntaxTextArea newPage;
@@ -29,15 +32,16 @@ public class ChildWindow extends JFrame {
 
         // Loading font settings from yaml configuration file
         try {
-            ConfigurationSetter configSetter = new ConfigurationSetter("config.yaml");
-            FontConfiguration fontConfiguration = configSetter.getConfiguration();
-            FontConfiguration.FontStyle defaultStyle = fontConfiguration.getAppearance().get("default");
-
-            fontName = defaultStyle.getFontName();
-            fontSize = Integer.parseInt(defaultStyle.getFontSize());
-            fontStyle = getFontStyle(defaultStyle.getFontStyle());
-        } catch (IOException ioExcept) {
-            JOptionPane.showMessageDialog(newWindow, "Error setting font from yaml configuration file: " + ioExcept.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            Yaml yaml = new Yaml();
+            InputStream inputStream = this.getClass()
+                    .getClassLoader()
+                    .getResourceAsStream("config.yaml");
+            Map<String, String> defaultFontSettings = yaml.load(inputStream);
+            fontName = defaultFontSettings.get("fontName");
+            fontSize = Integer.parseInt(defaultFontSettings.get("fontSize"));
+            fontStyle = getFontStyle(defaultFontSettings.get("fontStyle"));
+        } catch (Exception ioExcept) {
+            JOptionPane.showMessageDialog(newWindow, "Error reading font from yaml configuration file: " + ioExcept.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         // Setting background/foreground colours of new window to match the current window
@@ -108,8 +112,6 @@ public class ChildWindow extends JFrame {
                 return Font.BOLD;
             case "ITALIC":
                 return Font.ITALIC;
-            case "BOLD+ITALIC":
-                return Font.BOLD | Font.ITALIC;
             default:
                 return Font.PLAIN;
         }

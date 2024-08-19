@@ -1,8 +1,7 @@
 # config.yaml
 
-  appearance:
     # Default font settings for text editor
-    default:
-      fontName: "Consolas"
-      fontSize: "14"
-      fontStyle: "PLAIN"
+
+    fontName: "Consolas"
+    fontSize: "14"
+    fontStyle: "PLAIN"
