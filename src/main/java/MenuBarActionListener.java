@@ -152,7 +152,7 @@ public class MenuBarActionListener {
             } catch (Exception ex) {
                 System.err.println("Failed to initialize LaF");
             }
-            // Changing syntax highlighting color scheme to match changing mode
+            // Changing syntax highlighting color scheme to match change in mode
             try {
                 Theme theme = Theme.load(MenuBarActionListener.class.getResourceAsStream(
                         "/org/fife/ui/rsyntaxtextarea/themes/default.xml"));
@@ -163,8 +163,7 @@ public class MenuBarActionListener {
             // Updating current window
             SwingUtilities.updateComponentTreeUI(newWindow);
 
-            Font font = new Font("Consolas", Font.PLAIN, 14);
-            textArea.setFont(font);
+            ChildWindow.newPage.setFont(new Font(ChildWindow.fontName, ChildWindow.fontStyle, ChildWindow.fontSize));
 
             textArea.setForeground(new Color(58, 58, 58));
             textArea.setBackground(new Color(214, 214, 214));
@@ -190,8 +189,7 @@ public class MenuBarActionListener {
             // Updating current window
             SwingUtilities.updateComponentTreeUI(newWindow);
 
-            Font font = new Font("Consolas", Font.PLAIN, 14);
-            textArea.setFont(font);
+            ChildWindow.newPage.setFont(new Font(ChildWindow.fontName, ChildWindow.fontStyle, ChildWindow.fontSize));
 
             textArea.setForeground(new Color(204, 204, 204));
             textArea.setBackground(new Color(58, 58, 58));

@@ -9,6 +9,9 @@ public class ChildWindow extends JFrame {
     public static RSyntaxTextArea newPage;
     public static JFrame newWindow;
     public static boolean darkMode = true;
+    public static String fontName;
+    public static int fontSize;
+    public static int fontStyle;
 
     // Constructor
     ChildWindow () {
@@ -24,6 +27,19 @@ public class ChildWindow extends JFrame {
         RTextScrollPane scrollPage = new RTextScrollPane(newPage);
         Gutter gutter = scrollPage.getGutter();
 
+        // Loading font settings from yaml configuration file
+        try {
+            ConfigurationSetter loader = new ConfigurationSetter("config.yaml");
+            FontConfiguration fontConfiguration = loader.getConfiguration();
+            FontConfiguration.FontStyle defaultStyle = fontConfiguration.getAppearance().get("default");
+
+            fontName = defaultStyle.getFontName();
+            fontSize = Integer.parseInt(defaultStyle.getFontSize());
+            fontStyle = getFontStyle(defaultStyle.getFontStyle());
+        } catch (IOException ioExcept) {
+            JOptionPane.showMessageDialog(newWindow, "Error setting font from yaml configuration file: " + ioExcept.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
         // Setting background/foreground colours of new window to match the current window
         if (darkMode) {
             // Setting menuBar color to dark theme
@@ -33,6 +49,7 @@ public class ChildWindow extends JFrame {
                 System.err.println("Failed to initialize LaF");
             }
 
+            // Setting syntax highlighting theme to match dark theme
             try {
                 Theme theme = Theme.load(getClass().getResourceAsStream(
                         "/org/fife/ui/rsyntaxtextarea/themes/monokai.xml"));
@@ -40,11 +57,9 @@ public class ChildWindow extends JFrame {
             } catch (IOException eRSyntax) {
                 System.out.println("There is a problem with the second RSyntaxTextArea syntax highlighting theme in ChildWindow");
             }
-
             SwingUtilities.updateComponentTreeUI(newWindow);
 
-            Font font = new Font("Consolas", Font.PLAIN, 14);
-            newPage.setFont(font);
+            newPage.setFont(new Font(fontName, fontStyle, fontSize));
 
             newPage.setForeground(new Color(204, 204, 204));
             newPage.setBackground(new Color(58, 58, 58));
@@ -58,6 +73,7 @@ public class ChildWindow extends JFrame {
                 System.err.println("Failed to initialize LaF");
             }
 
+            // Setting syntax highlighting theme to match light theme
             try {
                 Theme theme = Theme.load(getClass().getResourceAsStream(
                         "/org/fife/ui/rsyntaxtextarea/themes/default.xml"));
@@ -65,11 +81,9 @@ public class ChildWindow extends JFrame {
             } catch (IOException eRSyntax) {
                 System.out.println("There is a problem with the third RSyntaxTextArea syntax highlighting theme");
             }
-
             SwingUtilities.updateComponentTreeUI(newWindow);
 
-            Font font = new Font("Consolas", Font.PLAIN, 14);
-            newPage.setFont(font);
+            newPage.setFont(new Font(fontName, fontStyle, fontSize));
 
             newPage.setForeground(new Color(58, 58, 58));
             newPage.setBackground(new Color(214, 214, 214));
@@ -86,5 +100,18 @@ public class ChildWindow extends JFrame {
         newWindow.setLocation(50,50);
         newWindow.setVisible(true);
         newPage.requestFocusInWindow();
+    }
+
+    private int getFontStyle(String style) {
+        switch (style.toUpperCase()) {
+            case "BOLD":
+                return Font.BOLD;
+            case "ITALIC":
+                return Font.ITALIC;
+            case "BOLD+ITALIC":
+                return Font.BOLD | Font.ITALIC;
+            default:
+                return Font.PLAIN;
+        }
     }
 }
