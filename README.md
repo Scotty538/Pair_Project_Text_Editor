@@ -16,8 +16,9 @@ Searching for `""` will clear the highlighted word.
 - [#005df90](https://github.com/Scotty538/251-Assignment1-2024-Alex-Scott/commit/005df901021e09ee76c6a72c4fa2f6d8b55373e2)
 
 ### Scott
-- <commit ID>
-- <commit ID>
+- [#dc6486f](https://github.com/Scotty538/251-Assignment1-2024-Alex-Scott/commit/dc6486fa66d045ce4ce7c9584b3f8f6b92827d56)
+- [#696964e](https://github.com/Scotty538/251-Assignment1-2024-Alex-Scott/commit/696964ea2550572bd05c6492003c06419ca0eeef)
+- [#05012be](https://github.com/Scotty538/251-Assignment1-2024-Alex-Scott/commit/05012bed307c580a2690e95f3e08c603700f6291)
 
 
 ## Gitub Repository Link
