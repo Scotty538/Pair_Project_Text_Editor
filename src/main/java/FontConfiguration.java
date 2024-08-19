@@ -1,5 +1,7 @@
 import java.util.Map;
 
+// Class for storing font specifications.
+// This will be loaded with the information in the config.yaml file.
 public class FontConfiguration {
     private Map<String, FontStyle> appearance;
     public Map<String, FontStyle> getAppearance() {

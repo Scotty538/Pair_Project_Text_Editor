@@ -2,6 +2,8 @@ import org.yaml.snakeyaml.Yaml;
 import java.io.InputStream;
 import java.io.IOException;
 
+// Reads the font specifications in the config.yaml file and loads them into a FontConfiguration object
+// from where the font specifications can then be applied to the text editor.
 public class ConfigurationSetter {
     private final FontConfiguration configuration;
 

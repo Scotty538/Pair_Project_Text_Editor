@@ -29,8 +29,8 @@ public class ChildWindow extends JFrame {
 
         // Loading font settings from yaml configuration file
         try {
-            ConfigurationSetter loader = new ConfigurationSetter("config.yaml");
-            FontConfiguration fontConfiguration = loader.getConfiguration();
+            ConfigurationSetter configSetter = new ConfigurationSetter("config.yaml");
+            FontConfiguration fontConfiguration = configSetter.getConfiguration();
             FontConfiguration.FontStyle defaultStyle = fontConfiguration.getAppearance().get("default");
 
             fontName = defaultStyle.getFontName();
