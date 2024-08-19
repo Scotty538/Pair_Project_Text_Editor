@@ -26,7 +26,7 @@ public class MenuBarActionListener {
         String s = e.getActionCommand();
 
         if (s.equals("New")) {
-            ChildWindow newOne = new ChildWindow();
+            new ChildWindow();
         } else if (s.equals("Open")) {
             // Creating a new JFileChooser object
             JFileChooser fileChooser = new JFileChooser();
@@ -83,13 +83,18 @@ public class MenuBarActionListener {
             // Creating a new JFileChooser object with relevant header
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("Specify location to save file");
+
             // Calling showOpenDialog method to open file browser and select directory
             int directorySelection = fileChooser.showSaveDialog(null);
 
             if (directorySelection == JFileChooser.APPROVE_OPTION) {
 
-                // Obtaining the path to the selected directory
-                File filePath = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                // Obtaining the path to the selected directory and forcing file to be saved as text file.
+                String pathName = fileChooser.getSelectedFile().getAbsolutePath();
+                if (!pathName.endsWith(".txt")) {
+                    pathName = pathName + ".txt";
+                }
+                File filePath = new File(pathName);
 
                 try {
                     // Creating file writer
@@ -147,7 +152,7 @@ public class MenuBarActionListener {
             } catch (Exception ex) {
                 System.err.println("Failed to initialize LaF");
             }
-            // Changing syntax highlighting color scheme to match changing mode
+            // Changing syntax highlighting color scheme to match change in mode
             try {
                 Theme theme = Theme.load(MenuBarActionListener.class.getResourceAsStream(
                         "/org/fife/ui/rsyntaxtextarea/themes/default.xml"));
@@ -158,8 +163,7 @@ public class MenuBarActionListener {
             // Updating current window
             SwingUtilities.updateComponentTreeUI(newWindow);
 
-            Font font = new Font("Consolas", Font.PLAIN, 14);
-            textArea.setFont(font);
+            ChildWindow.newPage.setFont(new Font(ChildWindow.fontName, ChildWindow.fontStyle, ChildWindow.fontSize));
 
             textArea.setForeground(new Color(58, 58, 58));
             textArea.setBackground(new Color(214, 214, 214));
@@ -185,8 +189,7 @@ public class MenuBarActionListener {
             // Updating current window
             SwingUtilities.updateComponentTreeUI(newWindow);
 
-            Font font = new Font("Consolas", Font.PLAIN, 14);
-            textArea.setFont(font);
+            ChildWindow.newPage.setFont(new Font(ChildWindow.fontName, ChildWindow.fontStyle, ChildWindow.fontSize));
 
             textArea.setForeground(new Color(204, 204, 204));
             textArea.setBackground(new Color(58, 58, 58));
