@@ -39,6 +39,18 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency> <!-- AssertJ for fluent assertions -->
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.24.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency> <!-- AssertJ Swing for testing Java Swing components -->
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-swing</artifactId>
+            <version>3.17.0</version>
+            <scope>test</scope>
+        </dependency>
         <dependency> <!-- ODF toolkit (for opening ODT files) -->
             <groupId>org.odftoolkit</groupId>
             <artifactId>odfdom-java</artifactId>
