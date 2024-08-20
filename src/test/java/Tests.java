@@ -28,7 +28,8 @@ public class Tests {
         assertEquals("Consolas", checkFont(cWindow.newPage));
     }
 
-//
+//  The following test passes locally on my Mac laptop but the actual build fails on GitHub Actions
+
 //    @Before
 //    public void setUp() {
 //        // Start Xvfb
