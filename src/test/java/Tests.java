@@ -40,7 +40,7 @@ public class Tests {
         fixture.show(); // Shows the window
     }
 
-    @Test
+    @Test (timeout = 8000) // 8000 milliseconds = 8 seconds
     public void checkOpen() {
         // Simulating clicking on the "File" menu button
         JMenuItemFixture fileMenu = fixture.menuItem("File");
