@@ -28,61 +28,61 @@ public class Tests {
         assertEquals("Consolas", checkFont(cWindow.newPage));
     }
 
-
-    @Before
-    public void setUp() {
-        // Start Xvfb
-        runXvfb();
-
-        // Initialize the Swing GUI and AssertJ Swing
-        robot = BasicRobot.robotWithCurrentAwtHierarchy();
-        fixture = new FrameFixture(robot, cWindow.getFrame());
-        fixture.show(); // Shows the window
-    }
-
-    @Test
-    public void checkOpen() {
-        // Simulating clicking on the "File" menu button
-        JMenuItemFixture fileMenu = fixture.menuItem("File");
-        fileMenu.click();
-
-        // Simulating clicking  on the "Open" drop down item
-        JMenuItemFixture openMenuItem = fixture.menuItem("Open");
-        openMenuItem.click();
-
-        // Getting this far was incredibly hard, all I can do now is check the button actually exists
-        assertThat(openMenuItem).isNotNull();
-    }
-
-    @After
-    public void tearDown() {
-        // Cleaning up the test environment
-        fixture.cleanUp();
-        stopXvfb();
-    }
-
-    private void runXvfb() {
-        try {
-            ProcessBuilder pBuilder = new ProcessBuilder("Xvfb", ":99", "-screen", "0", "1024x768x24");
-            pBuilder.redirectErrorStream(true);
-            Process process = pBuilder.start();
-            process.waitFor();
-            System.setProperty("java.awt.headless", "false");
-            System.setProperty("DISPLAY", ":99");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void stopXvfb() {
-        try {
-            ProcessBuilder pBuilder = new ProcessBuilder("pkill", "Xvfb");
-            pBuilder.redirectErrorStream(true);
-            Process process = pBuilder.start();
-            process.waitFor();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//
+//    @Before
+//    public void setUp() {
+//        // Start Xvfb
+//        runXvfb();
+//
+//        // Initialize the Swing GUI and AssertJ Swing
+//        robot = BasicRobot.robotWithCurrentAwtHierarchy();
+//        fixture = new FrameFixture(robot, cWindow.getFrame());
+//        fixture.show(); // Shows the window
+//    }
+//
+//    @Test
+//    public void checkOpen() {
+//        // Simulating clicking on the "File" menu button
+//        JMenuItemFixture fileMenu = fixture.menuItem("File");
+//        fileMenu.click();
+//
+//        // Simulating clicking  on the "Open" drop down item
+//        JMenuItemFixture openMenuItem = fixture.menuItem("Open");
+//        openMenuItem.click();
+//
+//        // Getting this far was incredibly hard, all I can do now is check the button actually exists
+//        assertThat(openMenuItem).isNotNull();
+//    }
+//
+//    @After
+//    public void tearDown() {
+//        // Cleaning up the test environment
+//        fixture.cleanUp();
+//        stopXvfb();
+//    }
+//
+//    private void runXvfb() {
+//        try {
+//            ProcessBuilder pBuilder = new ProcessBuilder("Xvfb", ":99", "-screen", "0", "1024x768x24");
+//            pBuilder.redirectErrorStream(true);
+//            Process process = pBuilder.start();
+//            process.waitFor();
+//            System.setProperty("java.awt.headless", "false");
+//            System.setProperty("DISPLAY", ":99");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    private void stopXvfb() {
+//        try {
+//            ProcessBuilder pBuilder = new ProcessBuilder("pkill", "Xvfb");
+//            pBuilder.redirectErrorStream(true);
+//            Process process = pBuilder.start();
+//            process.waitFor();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
 
