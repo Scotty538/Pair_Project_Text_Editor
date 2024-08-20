@@ -39,6 +39,18 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency> <!-- AssertJ for fluent assertions -->
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.24.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency> <!-- AssertJ Swing for testing Java Swing components -->
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-swing</artifactId>
+            <version>3.17.0</version>
+            <scope>test</scope>
+        </dependency>
         <dependency> <!-- ODF toolkit (for opening ODT files) -->
             <groupId>org.odftoolkit</groupId>
             <artifactId>odfdom-java</artifactId>
@@ -73,9 +85,17 @@
             <plugin> <!-- For running program from the terminal -->
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.3.0</version>
                 <configuration>
                     <mainClass>TETextEditor</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <argLine>-Xmx2048m -Xms512m</argLine>
                 </configuration>
             </plugin>
         </plugins>

@@ -10,10 +10,12 @@ public class MenuBar {
 
         // Creating File menu button
         JMenu fileButton = new JMenu("File");
+        fileButton.setName("File");  // Naming so automated testing can identify component
 
         // Creating File menu dropdown items
         JMenuItem fileNew = new JMenuItem("New");
         JMenuItem fileOpen = new JMenuItem("Open");
+        fileOpen.setName("Open");  // Naming so automated testing can identify component
         JMenuItem fileSave = new JMenuItem("Save As");
         JMenuItem fileExportAsPDF = new JMenuItem("Export As PDF");
         JMenuItem filePrint = new JMenuItem("Print");
