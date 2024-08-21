@@ -5,7 +5,7 @@ FROM  openjdk:19
 WORKDIR /application
 
 # Copy the JAR file
-COPY /target/TextEditor-1.0-jar-with-dependencies.jar ./NewOne-1.0.jar
+COPY /target/TextEditor-1.0-SNAPSHOT-jar-with-dependencies.jar ./NewOne-1.0.jar
 
 # Expose the port the app runs on
 EXPOSE 8080
