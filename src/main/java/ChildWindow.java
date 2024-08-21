@@ -116,8 +116,4 @@ public class ChildWindow extends JFrame {
                 return Font.PLAIN;
         }
     }
-
-    public JFrame getFrame() {
-        return newWindow;
-    }
 }

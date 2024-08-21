@@ -51,10 +51,15 @@
             <version>3.17.0</version>
             <scope>test</scope>
         </dependency>
-        <dependency> <!-- ODF toolkit (for opening ODT files) -->
+<!--        <dependency> &lt;!&ndash; ODF toolkit (for opening ODT files) &ndash;&gt;-->
+<!--            <groupId>org.odftoolkit</groupId>-->
+<!--            <artifactId>odfdom-java</artifactId>-->
+<!--            <version>0.8.7</version>-->
+<!--        </dependency>-->
+        <dependency>
             <groupId>org.odftoolkit</groupId>
-            <artifactId>odfdom-java</artifactId>
-            <version>0.12.0</version>
+            <artifactId>simple-odf</artifactId>
+            <version>0.9.0</version>
         </dependency>
         <dependency> <!-- iText (for exporting to pdf) -->
             <groupId>com.itextpdf</groupId>
