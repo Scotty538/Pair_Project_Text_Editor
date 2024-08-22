@@ -6,7 +6,7 @@ import javax.swing.text.Highlighter;
 import java.awt.*;
 
 public class SearchBar {
-    // Create search bar UI component
+    // Creating search bar UI component
     public static JTextField createSearchBar(RSyntaxTextArea textArea) {
         JTextField searchBar = new JTextField();
 

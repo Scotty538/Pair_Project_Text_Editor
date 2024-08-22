@@ -28,7 +28,10 @@ public class Tests {
         assertEquals("Consolas", checkFont(cWindow.newPage));
     }
 
-//
+////  The following test passes locally on my Mac laptop but the actual build fails on GitHub Actions
+//// The error was: dbind-WARNING **: 09:23:43.866: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+//// 2024-08-20T09:23:44.0310131Z [INFO]
+////
 //    @Before
 //    public void setUp() {
 //        // Start Xvfb

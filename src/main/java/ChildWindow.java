@@ -117,7 +117,8 @@ public class ChildWindow extends JFrame {
         }
     }
 
-    public JFrame getFrame() {
-        return newWindow;
-    }
+// Used to testing Open
+//    public JFrame getFrame() {
+//        return newWindow;
+//    }
 }
