@@ -82,6 +82,11 @@
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>3.24.0</version>
                 <configuration>
+                    <rulesets>
+                        <rulseset>/category/java/bestpractices.xml</rulseset>
+                        <rulseset>/category/java/design.xml</rulseset>
+                        <rulseset>/category/java/codestyle.xml</rulseset>
+                    </rulesets>
                     <format>html</format>
                     <!-- Generate pmd report in reports/pmd directory -->
                     <outputDirectory>${project.basedir}/reports/pmd</outputDirectory>
@@ -139,5 +144,22 @@
             </plugin>
         </plugins>
     </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.24.0</version>
+                <configuration>
+                    <rulesets>
+                        <!-- A rule set, that comes bundled with PMD -->
+                        <ruleset>/category/java/bestpractices.xml</ruleset>
+
+                    </rulesets>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 
 </project>
