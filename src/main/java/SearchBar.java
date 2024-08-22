@@ -1,4 +1,5 @@
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
@@ -50,6 +51,6 @@ public class SearchBar {
             }
             index = text.indexOf(targetWord, endIndex);
         }
-        }
     }
+}
 

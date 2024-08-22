@@ -6,15 +6,6 @@ Alex Malone (23013729) & Scott O'Connor (96028881)
 ### Run the Program
 Open and run the TETextEditor.java file.
 
-OR
-
-
-Run the project via command line with the following command from the root project directory:
-
-```
-mvn exec:java
-```
-
 ### Run with Docker
 1. To create the image, run the following command from the root project directory:
    

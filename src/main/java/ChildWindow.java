@@ -1,12 +1,15 @@
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
+import org.fife.ui.rsyntaxtextarea.Theme;
+import org.fife.ui.rtextarea.Gutter;
+import org.fife.ui.rtextarea.RTextScrollPane;
+import org.yaml.snakeyaml.Yaml;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
-
-import org.fife.ui.rtextarea.*;
-import org.fife.ui.rsyntaxtextarea.*;
-import org.yaml.snakeyaml.Yaml;
 
 public class ChildWindow extends JFrame {
     public static RSyntaxTextArea newPage;
@@ -17,7 +20,7 @@ public class ChildWindow extends JFrame {
     public static int fontStyle;
 
     // Constructor
-    ChildWindow () {
+    ChildWindow() {
         newWindow = new JFrame("TE Text Editor");
 
         // Adding text area
@@ -101,7 +104,7 @@ public class ChildWindow extends JFrame {
         newWindow.add(scrollPage);
         newWindow.setSize(600, 400);
         newWindow.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        newWindow.setLocation(50,50);
+        newWindow.setLocation(50, 50);
         newWindow.setVisible(true);
         newPage.requestFocusInWindow();
     }
