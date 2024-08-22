@@ -51,11 +51,11 @@
             <version>3.17.0</version>
             <scope>test</scope>
         </dependency>
-<!--        <dependency> &lt;!&ndash; ODF toolkit (for opening ODT files) &ndash;&gt;-->
-<!--            <groupId>org.odftoolkit</groupId>-->
-<!--            <artifactId>odfdom-java</artifactId>-->
-<!--            <version>0.8.7</version>-->
-<!--        </dependency>-->
+        <dependency> <!-- ODF toolkit (for opening ODT files) -->
+            <groupId>org.odftoolkit</groupId>
+            <artifactId>odfdom-java</artifactId>
+            <version>0.8.7</version>
+        </dependency>
         <dependency>
             <groupId>org.odftoolkit</groupId>
             <artifactId>simple-odf</artifactId>
