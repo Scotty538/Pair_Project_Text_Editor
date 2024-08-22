@@ -116,9 +116,4 @@ public class ChildWindow extends JFrame {
                 return Font.PLAIN;
         }
     }
-
-// Used to testing Open
-//    public JFrame getFrame() {
-//        return newWindow;
-//    }
 }
