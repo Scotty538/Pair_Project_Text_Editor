@@ -23,6 +23,8 @@ The `reports` directory contains the metrics and reports for the project.
 - The `metrics` sub-directory contains metrics generated with the MetricsReloaded plugin
 - The `pmd` sub-directory contains the automated pmd report and metrics in html/css format
 
+The `src/main/resources` directory contains a `config.yaml` file which specifies the default font configurations for the text editor
+
 ### Github Actions CI Pipeline
 The 'Run Maven Build' Actions workflow contains a `build.yaml` file which automates the `mvn clean test` command on each push to the github remote repository
 You can track the build status of the commits under the Github Actions tab
