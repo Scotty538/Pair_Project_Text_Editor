@@ -1,27 +1,21 @@
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
+import org.fife.ui.rsyntaxtextarea.Theme;
+import org.fife.ui.rtextarea.Gutter;
+import org.odftoolkit.simple.TextDocument;
+import org.odftoolkit.simple.text.Paragraph;
+
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.Document;
+import javax.swing.text.rtf.RTFEditorKit;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.*;
 import java.util.Date;
 import java.util.Iterator;
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.Document;
-import javax.swing.text.rtf.RTFEditorKit;
-
-import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
-import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
-import org.fife.ui.rsyntaxtextarea.Theme;
-import org.fife.ui.rtextarea.Gutter;
-
-// Odt support imports
-//import org.odftoolkit.odfdom.doc.OdfDocument;
-//import org.odftoolkit.odfdom.incubator.doc.text.OdfEditableTextExtractor;
-import org.odftoolkit.simple.TextDocument;
-import org.odftoolkit.simple.text.Paragraph;
-
-// Export to pdf imports
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
 
 public class MenuBarActionListener {
     // Adding events for when a menu button is clicked
@@ -131,8 +125,7 @@ public class MenuBarActionListener {
             if (result == JOptionPane.YES_OPTION) {
                 System.exit(0); // Close all windows
             }
-        }
-        else if (s.equals("Select All")) {
+        } else if (s.equals("Select All")) {
             textArea.selectAll();
         } else if (s.equals("Cut")) {
             textArea.cut();
@@ -218,6 +211,7 @@ public class MenuBarActionListener {
         }
         return page;
     }
+
     private static String readRTFFile(File file, JFrame newWindow) throws IOException {
         RTFEditorKit rtfEditorKit = new RTFEditorKit();
         StringWriter writer = new StringWriter();
@@ -231,19 +225,8 @@ public class MenuBarActionListener {
         }
         return writer.toString();
     }
+
     private static String readODTFile(File file, JFrame newWindow) throws IOException {
-//        try (OdfDocument document = OdfDocument.loadDocument(file)) { // Load odt file
-//            // Extract odt text to object
-//            OdfEditableTextExtractor extractor = OdfEditableTextExtractor.newOdfEditableTextExtractor(document);
-//            return extractor.getText(); // Return the odt text
-//        } catch (Exception eODT) {
-//            JOptionPane.showMessageDialog(newWindow, "Error reading ODT file: " + eODT.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//        }
-//        return ""; // Return empty string if error occurred
-
-// The above code works but does not preserve text formatting.
-// The following code preserves new lines
-
         try {
             TextDocument document = TextDocument.loadDocument(file);
             String content = "";
@@ -261,6 +244,7 @@ public class MenuBarActionListener {
         }
         return ""; // Return empty string if error occurs
     }
+
     private static void exportToPdf(RSyntaxTextArea textArea, JFrame newWindow) {
         // Creating new file chooser
         JFileChooser fileChooser = new JFileChooser();
