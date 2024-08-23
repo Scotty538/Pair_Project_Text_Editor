@@ -4,11 +4,34 @@ Alex Malone (23013729) & Scott O'Connor (96028881)
 
 ## Instructions
 ### Run the Program
-Open and run the TETextEditor.java file.
+Open and run the TETextEditor.java file
+
+### Run with Docker
+1. To create the image, run the following command from the root project directory:
+   
+   ```
+   docker build -t app .
+   ```
+3. Then run the container with: (Note that you may need to change the port if it is already in use)
+   ```
+   docker run -p 8080:8080 -d app
+   ```
+
+## Notes
+### Notable Directories
+The `reports` directory contains the metrics and reports for the project.
+- The `metrics` sub-directory contains metrics generated with the MetricsReloaded plugin
+- The `pmd` sub-directory contains the automated pmd report and metrics in html/css format
+
+The `src/main/resources` directory contains a `config.yaml` file which specifies the default font configurations for the text editor
+
+### Github Actions CI Pipeline
+The 'Run Maven Build' Actions workflow contains a `build.yaml` file which automates the `mvn clean test` command on each push to the github remote repository
+You can track the build status of the commits under the Github Actions tab
 
 ### Search Feature
-To use the search feature, type any word in the search bar to check if it is in the document.
-Searching for `""` will clear the highlighted word.
+To use the search feature, type any word in the search bar to check if it is in the document
+Searching for `""` will clear the highlighted word
 
 ## Most significant git commit IDs
 ### Alex

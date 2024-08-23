@@ -1,13 +1,8 @@
-import org.assertj.swing.core.BasicRobot;
+
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.fixture.FrameFixture;
-import org.assertj.swing.fixture.JMenuItemFixture;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.Assert.assertEquals;
 
 public class Tests {
@@ -27,65 +22,5 @@ public class Tests {
     public void checkFont() {
         assertEquals("Consolas", checkFont(cWindow.newPage));
     }
-
-////  The following test passes locally on my Mac laptop but the actual build fails on GitHub Actions
-//// The error was: dbind-WARNING **: 09:23:43.866: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
-//// 2024-08-20T09:23:44.0310131Z [INFO]
-////
-//    @Before
-//    public void setUp() {
-//        // Start Xvfb
-//        runXvfb();
-//
-//        // Initialize the Swing GUI and AssertJ Swing
-//        robot = BasicRobot.robotWithCurrentAwtHierarchy();
-//        fixture = new FrameFixture(robot, cWindow.getFrame());
-//        fixture.show(); // Shows the window
-//    }
-//
-//    @Test
-//    public void checkOpen() {
-//        // Simulating clicking on the "File" menu button
-//        JMenuItemFixture fileMenu = fixture.menuItem("File");
-//        fileMenu.click();
-//
-//        // Simulating clicking  on the "Open" drop down item
-//        JMenuItemFixture openMenuItem = fixture.menuItem("Open");
-//        openMenuItem.click();
-//
-//        // Getting this far was incredibly hard, all I can do now is check the button actually exists
-//        assertThat(openMenuItem).isNotNull();
-//    }
-//
-//    @After
-//    public void tearDown() {
-//        // Cleaning up the test environment
-//        fixture.cleanUp();
-//        stopXvfb();
-//    }
-//
-//    private void runXvfb() {
-//        try {
-//            ProcessBuilder pBuilder = new ProcessBuilder("Xvfb", ":99", "-screen", "0", "1024x768x24");
-//            pBuilder.redirectErrorStream(true);
-//            Process process = pBuilder.start();
-//            process.waitFor();
-//            System.setProperty("java.awt.headless", "false");
-//            System.setProperty("DISPLAY", ":99");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    private void stopXvfb() {
-//        try {
-//            ProcessBuilder pBuilder = new ProcessBuilder("pkill", "Xvfb");
-//            pBuilder.redirectErrorStream(true);
-//            Process process = pBuilder.start();
-//            process.waitFor();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 }
 

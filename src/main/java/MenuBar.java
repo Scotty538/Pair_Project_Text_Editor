@@ -84,7 +84,7 @@ public class MenuBar {
         nameButton.add(aboutItem);
 
         // Adding action listener
-        aboutItem.addActionListener(e ->MenuBarActionListener.action(page, e, gutter, newWindow));
+        aboutItem.addActionListener(e -> MenuBarActionListener.action(page, e, gutter, newWindow));
 
         // Creating 'Search' section
         JMenu searchButton = new JMenu("Search");
