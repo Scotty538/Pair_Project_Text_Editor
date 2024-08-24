@@ -156,16 +156,16 @@ public class MenuBarActionListener {
             } catch (IOException eRSyntax) {
                 JOptionPane.showMessageDialog(newWindow, "Error setting theme for light mode: " + eRSyntax.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
-            // Updating current window
-            SwingUtilities.updateComponentTreeUI(newWindow);
 
-            ChildWindow.newPage.setFont(new Font(ChildWindow.fontName, ChildWindow.fontStyle, ChildWindow.fontSize));
+            newWindow.setFont(new Font(ChildWindow.fontName, ChildWindow.fontStyle, ChildWindow.fontSize));
 
             textArea.setForeground(new Color(58, 58, 58));
             textArea.setBackground(new Color(214, 214, 214));
             gutter.setBackground(new Color(214, 214, 214));
-            ChildWindow.newPage.setCurrentLineHighlightColor(new Color(189, 189, 189)); // Change colour of highlighted line
+            textArea.setCurrentLineHighlightColor(new Color(189, 189, 189)); // Change colour of highlighted line
             ChildWindow.darkMode = false;
+            // Updating current window
+            SwingUtilities.updateComponentTreeUI(newWindow);
         } else if (s.equals("Dark Mode")) {
 
             // Setting menuBar color to dark theme
@@ -182,16 +182,16 @@ public class MenuBarActionListener {
             } catch (IOException eRSyntax) {
                 JOptionPane.showMessageDialog(newWindow, "Error setting theme for light mode: " + eRSyntax.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
-            // Updating current window
-            SwingUtilities.updateComponentTreeUI(newWindow);
 
-            ChildWindow.newPage.setFont(new Font(ChildWindow.fontName, ChildWindow.fontStyle, ChildWindow.fontSize));
+            newWindow.setFont(new Font(ChildWindow.fontName, ChildWindow.fontStyle, ChildWindow.fontSize));
 
             textArea.setForeground(new Color(204, 204, 204));
             textArea.setBackground(new Color(58, 58, 58));
             gutter.setBackground(new Color(58, 58, 58));
-            ChildWindow.newPage.setCurrentLineHighlightColor(new Color(84, 84, 84)); // Change colour of highlighted line
+            textArea.setCurrentLineHighlightColor(new Color(84, 84, 84)); // Change colour of highlighted line
             ChildWindow.darkMode = true;
+            // Updating current window
+            SwingUtilities.updateComponentTreeUI(newWindow);
         } else if (s.equals("About")) {
             JOptionPane.showMessageDialog(ChildWindow.newWindow, "Created by Alex Malone & Scott O'Connor for Assignment 1 of 159251, 2024");
         }

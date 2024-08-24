@@ -64,7 +64,6 @@ public class ChildWindow extends JFrame {
             } catch (IOException eRSyntax) {
                 System.out.println("There is a problem with the second RSyntaxTextArea syntax highlighting theme in ChildWindow");
             }
-            SwingUtilities.updateComponentTreeUI(newWindow);
 
             newPage.setFont(new Font(fontName, fontStyle, fontSize));
 
@@ -72,6 +71,7 @@ public class ChildWindow extends JFrame {
             newPage.setBackground(new Color(58, 58, 58));
             gutter.setBackground(new Color(58, 58, 58));
             newPage.setCurrentLineHighlightColor(new Color(84, 84, 84));// Change colour of highlighted line
+            SwingUtilities.updateComponentTreeUI(newWindow);
         } else {
             // Setting menuBar color to light theme
             try {
@@ -88,7 +88,6 @@ public class ChildWindow extends JFrame {
             } catch (IOException eRSyntax) {
                 System.out.println("There is a problem with the third RSyntaxTextArea syntax highlighting theme");
             }
-            SwingUtilities.updateComponentTreeUI(newWindow);
 
             newPage.setFont(new Font(fontName, fontStyle, fontSize));
 
@@ -96,6 +95,7 @@ public class ChildWindow extends JFrame {
             newPage.setBackground(new Color(214, 214, 214));
             gutter.setBackground(new Color(214, 214, 214));
             newPage.setCurrentLineHighlightColor(new Color(189, 189, 189));
+            SwingUtilities.updateComponentTreeUI(newWindow);
         }
 
         // Creating and displaying menu bar component
