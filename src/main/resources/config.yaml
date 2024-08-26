@@ -3,5 +3,5 @@
     # Default font settings for text editor
 
     fontName: "Consolas"
-    fontSize: "14"
+    fontSize: "24"
     fontStyle: "PLAIN"
