@@ -121,7 +121,7 @@ public class MenuBarActionListener {
                 JOptionPane.showMessageDialog(newWindow, "Error printing file: " + ePrinting.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else if (s.equals("Exit All")) {
-            int result = JOptionPane.showConfirmDialog(ChildWindow.newWindow, "Are you sure you want to quit the programme? Any unsaved changes will be lost.", "Warning", JOptionPane.YES_NO_OPTION);
+            int result = JOptionPane.showConfirmDialog(newWindow, "Are you sure you want to quit the programme? Any unsaved changes will be lost.", "Warning", JOptionPane.YES_NO_OPTION);
             if (result == JOptionPane.YES_OPTION) {
                 System.exit(0); // Close all windows
             }
@@ -196,7 +196,7 @@ public class MenuBarActionListener {
             ChildWindow.darkMode = true;
 
         } else if (s.equals("About")) {
-            JOptionPane.showMessageDialog(ChildWindow.newWindow, "Created by Alex Malone & Scott O'Connor for Assignment 1 of 159251, 2024");
+            JOptionPane.showMessageDialog(newWindow, "Created by Alex Malone & Scott O'Connor for Assignment 1 of 159251, 2024");
         }
     }
 

@@ -12,8 +12,8 @@ import java.io.InputStream;
 import java.util.Map;
 
 public class ChildWindow extends JFrame {
-    public static RSyntaxTextArea newPage;
-    public static JFrame newWindow;
+    public RSyntaxTextArea newPage;
+    public JFrame newWindow;
     public static boolean darkMode = true;
     public static String fontName;
     public static int fontSize;
