@@ -70,7 +70,7 @@ public class MenuBarActionListener {
                     } else {
                         textArea.setText("Cannot open file. Unknown file type.");
                     }
-                } catch (IOException eReading) {
+                } catch (Exception eReading) {
                     JOptionPane.showMessageDialog(newWindow, "Error reading file: " + eReading.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 // Updating window title to the file name
@@ -197,7 +197,7 @@ public class MenuBarActionListener {
         }
     }
 
-    private static String readFile(File file, JFrame newWindow) throws IOException {
+    private static String readFile(File file, JFrame newWindow) {
         String line, page = "";
         try {
             FileReader fr = new FileReader(file);
@@ -212,7 +212,7 @@ public class MenuBarActionListener {
         return page;
     }
 
-    private static String readRTFFile(File file, JFrame newWindow) throws IOException {
+    private static String readRTFFile(File file, JFrame newWindow) {
         RTFEditorKit rtfEditorKit = new RTFEditorKit();
         StringWriter writer = new StringWriter();
         try {
@@ -226,7 +226,7 @@ public class MenuBarActionListener {
         return writer.toString();
     }
 
-    private static String readODTFile(File file, JFrame newWindow) throws IOException {
+    private static String readODTFile(File file, JFrame newWindow) {
         try {
             TextDocument document = TextDocument.loadDocument(file);
             String content = "";
