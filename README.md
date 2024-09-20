@@ -17,6 +17,8 @@ mvn exec:java
    
    ```
    mvn clean install
+   ```
+   ```
    docker build -t app .
    ```
 3. Then run the container with: (Note that you may need to change the port if it is already in use)
