@@ -7,10 +7,10 @@ Alex Malone (23013729) & Scott O'Connor (96028881)
 Open the project file in an IDE and run the TETextEditor.java file.
 Alternatively, from within the project directory, type the following in the command line:
 ```
-mvn compile
+mvn clean install
 ```
 ```
-mvn exec:java
+mvn exec:java 
 ```
 ### Run with Docker
 1. To create the image, run the following commands from the root project directory:
@@ -28,7 +28,7 @@ mvn exec:java
 
 ## Notes
 ### Notable Directories
-The `reports` directory contains the metrics and reports for the project.
+- The `reports` directory contains the metrics and reports for the project.
 - The `metrics` sub-directory contains metrics generated with the MetricsReloaded plugin
 - The `pmd` sub-directory contains the automated pmd report and metrics in html/css format
 

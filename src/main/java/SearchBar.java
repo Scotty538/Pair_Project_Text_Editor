@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class SearchBar {
     // Creating search bar UI component
-    public static JTextField createSearchBar(RSyntaxTextArea textArea) {
+    public static JTextField createSearchBar(RSyntaxTextArea textArea, JFrame newWindow) {
         JTextField searchBar = new JTextField();
 
         searchBar.setPreferredSize(new Dimension(100, 22)); // Set preferred size of search bar
@@ -16,13 +16,13 @@ public class SearchBar {
 
         searchBar.addActionListener(e -> {
             String targetWord = searchBar.getText().toLowerCase();
-            findWord(targetWord, textArea);
+            findWord(targetWord, textArea, newWindow);
         });
 
         return searchBar;
     }
 
-    public static void findWord(String targetWord, RSyntaxTextArea textArea) {
+    public static void findWord(String targetWord, RSyntaxTextArea textArea, JFrame newWindow) {
         Highlighter highlighter = textArea.getHighlighter();
         Highlighter.HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(Color.orange);
 
@@ -38,7 +38,7 @@ public class SearchBar {
 
         // If word not found in document
         if (index == -1) {
-            JOptionPane.showMessageDialog(ChildWindow.newWindow, "Target word could not be found in this file.");
+            JOptionPane.showMessageDialog(newWindow, "Target word could not be found in this file.");
         }
 
         // Searching for instances of target word
@@ -47,7 +47,7 @@ public class SearchBar {
             try {
                 highlighter.addHighlight(index, endIndex, painter);
             } catch (BadLocationException eHighlighting) {
-                JOptionPane.showMessageDialog(ChildWindow.newWindow, "Error highlighting file: " + eHighlighting.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(newWindow, "Error highlighting file: " + eHighlighting.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
             index = text.indexOf(targetWord, endIndex);
         }

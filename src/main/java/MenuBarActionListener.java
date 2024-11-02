@@ -70,7 +70,7 @@ public class MenuBarActionListener {
                     } else {
                         textArea.setText("Cannot open file. Unknown file type.");
                     }
-                } catch (IOException eReading) {
+                } catch (Exception eReading) {
                     JOptionPane.showMessageDialog(newWindow, "Error reading file: " + eReading.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 // Updating window title to the file name
@@ -121,7 +121,7 @@ public class MenuBarActionListener {
                 JOptionPane.showMessageDialog(newWindow, "Error printing file: " + ePrinting.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else if (s.equals("Exit All")) {
-            int result = JOptionPane.showConfirmDialog(ChildWindow.newWindow, "Are you sure you want to quit the programme? Any unsaved changes will be lost.", "Warning", JOptionPane.YES_NO_OPTION);
+            int result = JOptionPane.showConfirmDialog(newWindow, "Are you sure you want to quit the programme? Any unsaved changes will be lost.", "Warning", JOptionPane.YES_NO_OPTION);
             if (result == JOptionPane.YES_OPTION) {
                 System.exit(0); // Close all windows
             }
@@ -156,16 +156,18 @@ public class MenuBarActionListener {
             } catch (IOException eRSyntax) {
                 JOptionPane.showMessageDialog(newWindow, "Error setting theme for light mode: " + eRSyntax.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
+
             // Updating current window
             SwingUtilities.updateComponentTreeUI(newWindow);
 
-            ChildWindow.newPage.setFont(new Font(ChildWindow.fontName, ChildWindow.fontStyle, ChildWindow.fontSize));
+            textArea.setFont(new Font(ChildWindow.fontName, ChildWindow.fontStyle, ChildWindow.fontSize));
 
             textArea.setForeground(new Color(58, 58, 58));
             textArea.setBackground(new Color(214, 214, 214));
             gutter.setBackground(new Color(214, 214, 214));
-            ChildWindow.newPage.setCurrentLineHighlightColor(new Color(189, 189, 189)); // Change colour of highlighted line
+            textArea.setCurrentLineHighlightColor(new Color(189, 189, 189)); // Change colour of highlighted line
             ChildWindow.darkMode = false;
+
         } else if (s.equals("Dark Mode")) {
 
             // Setting menuBar color to dark theme
@@ -185,19 +187,20 @@ public class MenuBarActionListener {
             // Updating current window
             SwingUtilities.updateComponentTreeUI(newWindow);
 
-            ChildWindow.newPage.setFont(new Font(ChildWindow.fontName, ChildWindow.fontStyle, ChildWindow.fontSize));
+            textArea.setFont(new Font(ChildWindow.fontName, ChildWindow.fontStyle, ChildWindow.fontSize));
 
             textArea.setForeground(new Color(204, 204, 204));
             textArea.setBackground(new Color(58, 58, 58));
             gutter.setBackground(new Color(58, 58, 58));
-            ChildWindow.newPage.setCurrentLineHighlightColor(new Color(84, 84, 84)); // Change colour of highlighted line
+            textArea.setCurrentLineHighlightColor(new Color(84, 84, 84)); // Change colour of highlighted line
             ChildWindow.darkMode = true;
+
         } else if (s.equals("About")) {
-            JOptionPane.showMessageDialog(ChildWindow.newWindow, "Created by Alex Malone & Scott O'Connor for Assignment 1 of 159251, 2024");
+            JOptionPane.showMessageDialog(newWindow, "Created by Alex Malone & Scott O'Connor for Assignment 1 of 159251, 2024");
         }
     }
 
-    private static String readFile(File file, JFrame newWindow) throws IOException {
+    private static String readFile(File file, JFrame newWindow) {
         String line, page = "";
         try {
             FileReader fr = new FileReader(file);
@@ -212,7 +215,7 @@ public class MenuBarActionListener {
         return page;
     }
 
-    private static String readRTFFile(File file, JFrame newWindow) throws IOException {
+    private static String readRTFFile(File file, JFrame newWindow) {
         RTFEditorKit rtfEditorKit = new RTFEditorKit();
         StringWriter writer = new StringWriter();
         try {
@@ -226,7 +229,7 @@ public class MenuBarActionListener {
         return writer.toString();
     }
 
-    private static String readODTFile(File file, JFrame newWindow) throws IOException {
+    private static String readODTFile(File file, JFrame newWindow) {
         try {
             TextDocument document = TextDocument.loadDocument(file);
             String content = "";

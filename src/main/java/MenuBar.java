@@ -88,7 +88,7 @@ public class MenuBar {
 
         // Creating 'Search' section
         JMenu searchButton = new JMenu("Search");
-        searchButton.add(SearchBar.createSearchBar(page)); // Add search bar to help dropdown
+        searchButton.add(SearchBar.createSearchBar(page, newWindow)); // Add search bar to help dropdown
 
         // Adding file, edit, and mode buttons to menu
         menuBar.add(nameButton);
